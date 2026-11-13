@@ -1,0 +1,2601 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="briefing">
+  <title>Análisis del Conflicto Armado · Valle del Guamuez, Putumayo (ACA II · CUN)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* Surfaces: warm ivory / stone-white paper */
+      --background: #FAF9F5;
+      --surface-container-low: #FFFFFF;
+      --surface-container: #F2EFE7;
+      --surface-container-high: #E7E2D6;
+
+      /* Ink */
+      --on-surface: #17181A;
+      --on-surface-variant: #4E5258;
+
+      /* Rules */
+      --outline: #1B3B4B;
+      --outline-variant: #D8D3C6;
+
+      /* Requested Territorial & Editorial Palette */
+      --amazon: #1F5C3B;
+      --amazon-soft: #EBF4EE;
+      --petrol: #1B3B4B;
+      --petrol-soft: #EAF0F3;
+      --amber: #D97706;
+      --amber-text: #92400E;
+      --amber-soft: #FEF3C7;
+
+      /* Core Briefing Semantic Tokens */
+      --primary: #1B3B4B;
+      --on-primary: #FAF9F5;
+      --primary-container: #D97706;
+      --on-primary-container: #17181A;
+      --secondary: #1B3B4B;
+      --tertiary: #92400E;
+      --error: #B42318;
+      --error-soft: #FDECEB;
+      --on-error: #FFFFFF;
+
+      --positive: #1F5C3B;
+      --warning: #D97706;
+      --focus: #1B3B4B;
+
+      /* Data Series */
+      --data-1: #1F5C3B;
+      --data-2: #1B3B4B;
+      --data-3: #D97706;
+      --data-4: #B42318;
+      --data-context: #C4BFB2;
+
+      /* Fonts */
+      --font-headline: 'Source Serif 4', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-label: 'Geist Mono', monospace;
+
+      /* Narrative Type Scale */
+      --display-size: clamp(2.125rem, 1.4rem + 2.6vw, 3.25rem);
+      --headline-size: clamp(1.5rem, 1.15rem + 1.3vw, 2.0625rem);
+      --subhead-size: clamp(1.125rem, 1rem + 0.45vw, 1.375rem);
+      --body-size: clamp(1rem, 0.96rem + 0.18vw, 1.0625rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Radii */
+      --rounded: 0.25rem;
+      --rounded-lg: 0.375rem;
+      --rounded-full: 0.25rem;
+
+      /* Effects */
+      --section-rule: 1.5px solid var(--outline);
+      --card-border: 1px solid var(--outline-variant);
+      --badge-radius: 2px;
+      --heading-tracking: -0.02em;
+      --label-tracking: 0.08em;
+
+      /* Spacing Scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base Reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-lg);
+      max-width: 1240px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Briefing Dossier Header & Section Bars */
+    .dossier-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      border-bottom: var(--section-rule);
+      padding-bottom: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .dossier-bar-left {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .dossier-pill {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: var(--label-tracking);
+      text-transform: uppercase;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--badge-radius);
+      display: inline-block;
+    }
+    .dossier-pill--amazon {
+      background: var(--amazon);
+      color: var(--on-primary);
+    }
+    .dossier-pill--petrol {
+      background: var(--petrol);
+      color: var(--on-primary);
+    }
+    .dossier-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Typography */
+    .display-title {
+      font-family: var(--font-headline);
+      font-size: var(--display-size);
+      font-weight: 600;
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.08;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .section-title {
+      font-family: var(--font-headline);
+      font-size: var(--headline-size);
+      font-weight: 600;
+      letter-spacing: var(--heading-tracking);
+      line-height: 1.15;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-xs) 0;
+    }
+    .standfirst {
+      font-family: var(--font-body);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      color: var(--petrol);
+      line-height: 1.45;
+      margin: 0;
+      max-width: 72ch;
+    }
+    .section-lede {
+      font-family: var(--font-body);
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-lg) 0;
+      max-width: 72ch;
+    }
+    .prose-block {
+      max-width: 65ch;
+      margin: 0;
+    }
+
+    /* Academic Identity Header */
+    .hero-shell {
+      display: grid;
+      gap: var(--space-lg);
+      padding-top: var(--space-md);
+    }
+    .institution-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--amazon);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+    }
+    .meta-item-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface-variant);
+      display: block;
+      margin-bottom: var(--space-xs);
+    }
+    .meta-item-value {
+      font-weight: 600;
+      color: var(--on-surface);
+      font-size: 0.9375rem;
+      line-height: 1.4;
+    }
+
+    /* Figure Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .figure-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      transition: border-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .figure-card .value {
+      font-family: var(--font-headline);
+      font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.375rem);
+      font-weight: 700;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--petrol);
+      line-height: 1.1;
+      margin: var(--space-xs) 0;
+    }
+    .figure-card .value--amazon { color: var(--amazon); }
+    .figure-card .value--amber { color: var(--amber-text); }
+    .figure-card .caption {
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    /* Context & Research Question Split */
+    .context-split {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .aside-box {
+      background: var(--surface-container);
+      border-top: var(--section-rule);
+      border-radius: 0 0 var(--rounded-lg) var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .question-box {
+      background: var(--petrol);
+      color: var(--on-primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border-left: 4px solid var(--amber);
+    }
+    .question-box .meta-item-label {
+      color: var(--amber-soft);
+    }
+    .question-quote {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      line-height: 1.4;
+      margin: var(--space-xs) 0 var(--space-md) 0;
+      color: var(--on-primary);
+    }
+
+    /* Canvas Jump Navigation */
+    .canvas-nav {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+    .nav-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--on-surface-variant);
+      margin-right: var(--space-sm);
+    }
+    .nav-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      padding: var(--space-xs) var(--space-sm);
+      min-height: 36px;
+      border-radius: var(--rounded);
+      border: 1px solid transparent;
+      background: var(--surface-container);
+      color: var(--on-surface);
+      text-decoration: none;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 500;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .nav-chip:hover {
+      background: var(--surface-container-high);
+      border-color: var(--outline-variant);
+    }
+    .nav-chip.is-active {
+      background: var(--petrol);
+      color: var(--on-primary);
+    }
+
+    /* Poster Section Shell */
+    .poster-section {
+      display: grid;
+      gap: var(--space-md);
+      scroll-margin-top: var(--space-lg);
+    }
+
+    /* Controls / Filter Pills */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-sm);
+    }
+    .btn-pill {
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .btn-pill:hover {
+      background: var(--surface-container);
+      border-color: var(--petrol);
+    }
+    .btn-pill.is-selected {
+      background: var(--petrol);
+      color: var(--on-primary);
+      border-color: var(--petrol);
+    }
+    .btn-pill--amazon.is-selected {
+      background: var(--amazon);
+      border-color: var(--amazon);
+    }
+    .btn-pill--amber.is-selected {
+      background: var(--amber);
+      color: var(--on-primary-container);
+      border-color: var(--amber);
+    }
+    .btn-pill--error.is-selected {
+      background: var(--error);
+      color: var(--on-error);
+      border-color: var(--error);
+    }
+
+    /* Status Tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.1875rem var(--space-sm);
+      border-radius: var(--rounded);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tag--primary { background: var(--amazon-soft); color: var(--amazon); }
+    .tag--secondary { background: var(--petrol-soft); color: var(--petrol); }
+    .tag--intermediary { background: var(--amber-soft); color: var(--amber-text); }
+    .tag--danger { background: var(--error-soft); color: var(--error); }
+    .tag--neutral { background: var(--surface-container); color: var(--on-surface-variant); }
+
+    /* 1. Actor Map Layout */
+    .actor-map-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 1.2fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .diagram-panel {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .svg-frame {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .actor-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .actor-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md);
+      cursor: pointer;
+      text-align: left;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .actor-card:hover {
+      background: var(--surface-container);
+    }
+    .actor-card.is-highlighted {
+      border-color: var(--petrol);
+      box-shadow: 0 0 0 2px var(--petrol);
+      background: var(--surface-container-low);
+    }
+    .actor-card.is-dimmed {
+      opacity: 0.42;
+    }
+    .actor-card h3 {
+      font-family: var(--font-headline);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: var(--space-sm) 0 var(--space-xs) 0;
+      color: var(--on-surface);
+      line-height: 1.25;
+    }
+    .actor-card p {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* SVG Interactive Nodes */
+    .svg-node {
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .svg-node.is-dimmed { opacity: 0.25; }
+
+    /* 2. PIN Matrix */
+    .pin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .pin-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      align-content: start;
+    }
+    .pin-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: var(--space-sm);
+    }
+    .pin-card-header h3 {
+      font-family: var(--font-headline);
+      font-size: 1.1875rem;
+      margin: 0;
+      line-height: 1.25;
+    }
+    .pin-row {
+      display: grid;
+      gap: var(--space-xs);
+      padding-left: var(--space-sm);
+      border-left: 3px solid var(--outline-variant);
+    }
+    .pin-row--pos { border-left-color: var(--petrol); }
+    .pin-row--int { border-left-color: var(--amber); }
+    .pin-row--nec { border-left-color: var(--amazon); }
+    .pin-row-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface-variant);
+    }
+    .pin-row p {
+      margin: 0;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+
+    /* 3. Power Sources */
+    .power-sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .power-source-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-top: 3px solid var(--petrol);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+    }
+    .power-source-card--amazon { border-top-color: var(--amazon); }
+    .power-source-card--amber { border-top-color: var(--amber); }
+    .power-source-card--error { border-top-color: var(--error); }
+    .index-num {
+      font-family: var(--font-label);
+      font-weight: 600;
+      font-size: var(--label-size);
+      color: var(--petrol);
+    }
+    .power-source-card h3 {
+      font-family: var(--font-headline);
+      font-size: 1.125rem;
+      margin: 0;
+      line-height: 1.25;
+    }
+    .power-source-actor {
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--amazon);
+      margin: 0;
+    }
+
+    /* 4. Power Manifestation Interactive Split */
+    .manifestation-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .selector-stack {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .selector-btn {
+      width: 100%;
+      min-height: 52px;
+      text-align: left;
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .selector-btn:hover { background: var(--surface-container); }
+    .selector-btn.is-active {
+      background: var(--petrol);
+      color: var(--on-primary);
+      border-color: var(--petrol);
+    }
+    .selector-btn .index-num { color: inherit; opacity: 0.85; }
+    .selector-btn-title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      display: block;
+    }
+    .selector-btn-sub {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      opacity: 0.85;
+      display: block;
+    }
+    .detail-dossier {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .detail-dossier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .sub-panel {
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+    }
+    .sub-panel h4 {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0 0 var(--space-xs) 0;
+      color: var(--petrol);
+    }
+    .sub-panel p {
+      margin: 0;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+
+    /* 5. Network Relations */
+    .network-layout {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      padding: var(--space-sm) var(--space-md);
+      background: var(--surface-container);
+      border-radius: var(--rounded);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .legend-line {
+      width: 28px;
+      height: 0;
+      display: inline-block;
+    }
+    .legend-line--coop { border-top: 3.5px solid var(--amazon); }
+    .legend-line--tension { border-top: 3px dashed var(--amber); }
+    .legend-line--conflict { border-top: 3px solid var(--error); }
+
+    .relation-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .relation-item {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-left: 4px solid var(--amazon);
+      border-radius: var(--rounded);
+      padding: var(--space-sm) var(--space-md);
+      cursor: pointer;
+      text-align: left;
+      transition: background-color var(--dur-micro) var(--ease-out);
+    }
+    .relation-item--tension { border-left-color: var(--amber); }
+    .relation-item--conflict { border-left-color: var(--error); }
+    .relation-item:hover, .relation-item.is-active {
+      background: var(--surface-container);
+    }
+    .relation-item h4 {
+      margin: var(--space-xs) 0;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+    .relation-item p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      line-height: 1.45;
+    }
+
+    /* 6. Horizontal Interactive Timeline */
+    .timeline-track-wrap {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .timeline-steps {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: var(--space-sm);
+      position: relative;
+    }
+    .timeline-node {
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--rounded);
+      padding: var(--space-sm);
+      cursor: pointer;
+      text-align: left;
+      display: grid;
+      gap: var(--space-xs);
+      align-content: start;
+      min-height: 108px;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out), transform var(--dur-micro) var(--ease-out);
+    }
+    .timeline-node:hover {
+      background: var(--surface-container-high);
+    }
+    .timeline-node.is-active {
+      background: var(--petrol);
+      color: var(--on-primary);
+      border-color: var(--petrol);
+      transform: translateY(-2px);
+    }
+    .timeline-date {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--amber-text);
+    }
+    .timeline-node.is-active .timeline-date {
+      color: var(--amber-soft);
+    }
+    .timeline-short {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .timeline-detail-card {
+      background: var(--surface-container);
+      border-left: 4px solid var(--amazon);
+      border-radius: var(--rounded);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+    }
+
+    /* Posters 7 & 8: Articulated Problem Tree */
+    .tree-shell {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .tree-tier-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: var(--label-tracking);
+      color: var(--petrol);
+      margin-bottom: var(--space-xs);
+      display: block;
+    }
+    .effects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .effect-leaf {
+      background: var(--amazon-soft);
+      border: 1px solid var(--amazon);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      transition: opacity var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .effect-leaf.is-dimmed { opacity: 0.35; }
+    .effect-leaf.is-focused { box-shadow: 0 0 0 2px var(--amazon); }
+    .effect-leaf h4 {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--amazon);
+      margin: 0 0 var(--space-xs) 0;
+    }
+    .effect-leaf p {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .central-trunk {
+      background: var(--petrol);
+      color: var(--on-primary);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border-left: 5px solid var(--amber);
+      border-right: 5px solid var(--amber);
+      text-align: center;
+    }
+    .central-trunk .tree-tier-label { color: var(--amber-soft); }
+    .central-trunk h3 {
+      font-family: var(--font-headline);
+      font-size: var(--subhead-size);
+      margin: 0;
+      line-height: 1.35;
+    }
+    .causes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .cause-root {
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      border-top: 4px solid var(--amber);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      cursor: pointer;
+      transition: opacity var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .cause-root--inst { border-top-color: var(--petrol); }
+    .cause-root--econ { border-top-color: var(--amber); }
+    .cause-root--soc { border-top-color: var(--error); }
+    .cause-root.is-dimmed { opacity: 0.38; }
+    .cause-root h4 {
+      font-family: var(--font-headline);
+      font-size: 1.0625rem;
+      margin: 0 0 var(--space-sm) 0;
+    }
+    .cause-root ul {
+      margin: 0;
+      padding-left: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* 9. Galtung ABC Triangle */
+    .abc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: var(--space-lg);
+      align-items: center;
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+    }
+    .abc-detail-panel {
+      background: var(--surface-container);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      border-top: 3px solid var(--petrol);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .abc-summary-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .abc-mini-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      cursor: pointer;
+      transition: border-color var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+    }
+    .abc-mini-card.is-active {
+      border-color: var(--petrol);
+      background: var(--petrol-soft);
+    }
+
+    /* 10. Structural Violence */
+    .violence-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-md);
+    }
+    .v-stage {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-sm);
+      align-content: start;
+    }
+    .v-stage--direct { border-top: 4px solid var(--error); }
+    .v-stage--structural { border-top: 4px solid var(--amber); }
+    .v-stage--positive { border-top: 4px solid var(--amazon); }
+    .v-stage h3 {
+      font-family: var(--font-headline);
+      font-size: 1.1875rem;
+      margin: 0;
+    }
+    .v-stage ul {
+      margin: 0;
+      padding-left: var(--space-md);
+      display: grid;
+      gap: var(--space-xs);
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Intervention Strategy Matrix */
+    .strategy-table-wrap {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded-lg);
+      overflow-x: auto;
+    }
+    .strategy-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+      text-align: left;
+    }
+    .strategy-table thead th {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--on-surface);
+      background: var(--surface-container);
+      padding: var(--space-md);
+      border-bottom: 1.5px solid var(--outline);
+    }
+    .strategy-table tbody td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--outline-variant);
+      vertical-align: top;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+    .strategy-table tbody tr:hover {
+      background: var(--surface-container);
+    }
+    .strategy-table tbody tr.is-hidden {
+      display: none;
+    }
+
+    /* References */
+    .bib-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .bib-card {
+      background: var(--surface-container-low);
+      border: var(--card-border);
+      border-radius: var(--rounded);
+      padding: var(--space-md);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-md);
+      align-items: start;
+    }
+    .bib-num {
+      font-family: var(--font-label);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--amazon);
+      background: var(--amazon-soft);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+    }
+
+    /* Footer */
+    .canvas-footer {
+      border-top: var(--section-rule);
+      padding: var(--space-lg) 0 var(--space-xl) 0;
+      color: var(--on-surface-variant);
+      font-size: 0.875rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Reveal Animations */
+    .reveal-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+
+    @media (max-width: 960px) {
+      .context-split,
+      .actor-map-layout,
+      .manifestation-layout,
+      .network-layout,
+      .abc-layout {
+        grid-template-columns: 1fr;
+      }
+      .timeline-steps {
+        grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+      }
+      .violence-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+        gap: var(--space-xl);
+      }
+      .canvas-nav {
+        padding: var(--space-sm);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  
+    /* Portable sharing controls */
+    .share-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: var(--space-xs);
+      padding: var(--space-sm) var(--space-md);
+      border: 1px solid var(--outline-variant);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface-container-low) 94%, transparent);
+      backdrop-filter: blur(12px);
+    }
+    .share-toolbar button {
+      min-height: 42px;
+      padding: 0.55rem 0.9rem;
+      border: 1px solid var(--outline);
+      border-radius: 6px;
+      background: var(--primary);
+      color: var(--on-primary);
+      font: 600 0.875rem var(--font-body);
+      cursor: pointer;
+    }
+    .share-toolbar button.secondary {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+    }
+    .share-toolbar button:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
+    .share-status { margin-right: auto; color: var(--on-surface-variant); font-size: 0.8125rem; }
+    @media print { .share-toolbar { display: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <nav class="share-toolbar" aria-label="Compartir o guardar el documento">
+      <span class="share-status" id="share-status" role="status" aria-live="polite">HTML descargado. Puedes adjuntarlo en un correo o mensajería.</span>
+      <button type="button" onclick="shareDocument()">Compartir documento</button>
+      <button type="button" class="secondary" onclick="downloadDocument()">Descargar HTML</button>
+      <button type="button" class="secondary" onclick="window.print()">Imprimir / PDF</button>
+    </nav>
+
+    <!-- ENCABEZADO FORMAL CUN Y CONTEXTO TERRITORIAL -->
+    <header class="hero-shell" id="inicio">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">CUN · ESPECIALIZACIÓN EN PAZ Y DESARROLLO TERRITORIAL</span>
+          <span class="dossier-meta">ACA II · ELECTIVA DE PROFUNDIZACIÓN I</span>
+        </div>
+        <span class="dossier-meta">PUTUMAYO, COLOMBIA · 13 NOV 2026</span>
+      </div>
+
+      <div>
+        <h1 class="display-title">Análisis y caracterización del conflicto armado en Valle del Guamuez, Putumayo</h1>
+        <p class="standfirst">Dificultades institucionales, jurídicas, sociales y territoriales para garantizar el tránsito a la vida civil en la Zona de Ubicación Temporal (ZUT) y la seguridad de las comunidades.</p>
+      </div>
+
+      <section class="institution-strip" aria-label="Identificación académica del proyecto">
+        <div>
+          <span class="meta-item-label">Institución y Programa</span>
+          <span class="meta-item-value">Corporación Unificada Nacional de Educación Superior (CUN) · Especialización en Paz y Desarrollo Territorial</span>
+        </div>
+        <div>
+          <span class="meta-item-label">Caso Territorial</span>
+          <span class="meta-item-value">Zona de Ubicación Temporal (ZUT) de Valle del Guamuez · Cabecera municipal: La Hormiga</span>
+        </div>
+        <div>
+          <span class="meta-item-label">Equipo de Trabajo</span>
+          <span class="meta-item-value">Yesica Judianna Armero Estrada · Adriana Lucía Urrutia Flórez · Deiber Suarez Cubillos · Lenis del Carmen López Plaza</span>
+        </div>
+        <div>
+          <span class="meta-item-label">Docente y Fecha de Entrega</span>
+          <span class="meta-item-value">Paola Andrea Camacho Vanegas · 13 de noviembre de 2026</span>
+        </div>
+      </section>
+
+      <section class="kpi-grid" aria-label="Cifras clave documentadas del caso">
+        <article class="figure-card">
+          <span class="meta-item-label">Ingreso a la ZUT (junio 2026)</span>
+          <div class="value value--amazon">99</div>
+          <p class="caption">Integrantes de Comandos de la Frontera (CNEB) que ingresaron para iniciar su tránsito a la vida civil.</p>
+        </article>
+        <article class="figure-card">
+          <span class="meta-item-label">Actores caracterizados</span>
+          <div class="value">6</div>
+          <p class="caption">Actores primarios, secundarios e intermediarios articulados en el mapa relacional y de poder.</p>
+        </article>
+        <article class="figure-card">
+          <span class="meta-item-label">Ventana crítica ZUT</span>
+          <div class="value value--amber">Dic 25 – Sep 26</div>
+          <p class="caption">Desde la declaración conjunta y Resolución 053 de 2026 hasta el cierre formal y continuidad de ruta ARN.</p>
+        </article>
+        <article class="figure-card">
+          <span class="meta-item-label">Estrategia territorial</span>
+          <div class="value">5 Líneas</div>
+          <p class="caption">Ejes de intervención orientados a continuidad institucional, protección comunitaria y alternativas legales.</p>
+        </article>
+      </section>
+
+      <section class="context-split" aria-label="Contextualización territorial y pregunta de investigación">
+        <article class="aside-box">
+          <span class="meta-item-label">Contextualización territorial</span>
+          <p class="prose-block"><strong>Valle del Guamuez</strong>, ubicado al sur de Colombia en el departamento del Putumayo en zona fronteriza con Ecuador (cabecera municipal La Hormiga), es un territorio amazónico con amplia diversidad natural y cultural habitado por comunidades <strong>campesinas, indígenas y afrodescendientes</strong>. Históricamente ha enfrentado la presencia de estructuras armadas ilegales, economías ilícitas y disputas por el control territorial, generando desplazamientos, amenazas y restricciones a la movilidad.</p>
+        </article>
+        <aside class="question-box">
+          <span class="meta-item-label">Pregunta central de investigación</span>
+          <p class="question-quote">“¿Qué dificultades enfrentan las instituciones, las personas en proceso de tránsito a la vida civil y las comunidades de Valle del Guamuez para garantizar la seguridad y la continuidad de este proceso en un territorio afectado por el conflicto armado?”</p>
+          <span class="meta-item-label">Criterio metodológico</span>
+          <p style="margin: 0; font-size: 0.875rem; opacity: 0.92;">El análisis diferencia estrictamente entre hechos documentados y lecturas analíticas del equipo, sin anticipar decisiones jurídicas sobre el futuro de la ZUT.</p>
+        </aside>
+      </section>
+    </header>
+
+    <!-- NAVEGACIÓN FLUIDA DEL LIENZO CONTINUO -->
+    <nav class="canvas-nav" aria-label="Navegación por Componentes del lienzo">
+      <span class="nav-label">Índice del lienzo</span>
+      <a class="nav-chip is-active" href="#poster-1">P01 Actores</a>
+      <a class="nav-chip" href="#poster-2">P02 PIN</a>
+      <a class="nav-chip" href="#poster-3">P03 Fuentes</a>
+      <a class="nav-chip" href="#poster-4">P04 Manifestación</a>
+      <a class="nav-chip" href="#poster-5">P05 Relaciones</a>
+      <a class="nav-chip" href="#poster-6">P06 Línea de tiempo</a>
+      <a class="nav-chip" href="#poster-7-8">P07–08 Árbol</a>
+      <a class="nav-chip" href="#poster-9">P09 Triángulo ABC</a>
+      <a class="nav-chip" href="#poster-10">P10 Violencia estructural</a>
+      <a class="nav-chip" href="#estrategia">Estrategia</a>
+      <a class="nav-chip" href="#fuentes">Fuentes</a>
+    </nav>
+
+    <!-- 1. MAPA DE ACTORES -->
+    <section class="poster-section reveal-section" id="poster-1">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--amazon">01</span>
+          <span class="dossier-meta">MAPA DE ACTORES · EL QUIÉN ES QUIÉN</span>
+        </div>
+        <span class="dossier-meta">CLASIFICACIÓN FUNCIONAL</span>
+      </div>
+      <h2 class="section-title">Actores primarios, secundarios e intermediarios en la problemática de la ZUT</h2>
+      <p class="section-lede">Identificación de los actores que intervienen directamente en el tránsito a la vida civil y la protección territorial en Valle del Guamuez. Seleccione una categoría o haga clic en cualquier nodo del diagrama para inspeccionar su función.</p>
+
+      <div class="filter-row" role="group" aria-label="Filtrar actores por clasificación">
+        <button type="button" class="btn-pill is-selected" data-actor-filter="all" onclick="filterActors('all', this)">Todos (6)</button>
+        <button type="button" class="btn-pill btn-pill--amazon" data-actor-filter="primario" onclick="filterActors('primario', this)">Primarios (2)</button>
+        <button type="button" class="btn-pill" data-actor-filter="secundario" onclick="filterActors('secundario', this)">Secundarios (3)</button>
+        <button type="button" class="btn-pill btn-pill--amber" data-actor-filter="intermediario" onclick="filterActors('intermediario', this)">Intermediario (1)</button>
+      </div>
+
+      <div class="actor-map-layout">
+        <div class="diagram-panel">
+          <span class="meta-item-label">Esquema concéntrico de proximidad territorial</span>
+          <svg class="svg-frame" viewBox="0 0 460 360" role="img" aria-label="Mapa concéntrico de actores en Valle del Guamuez">
+            <rect x="0" y="0" width="460" height="360" rx="6" fill="var(--surface-container-low)"></rect>
+            <!-- Concentric Rings -->
+            <circle cx="230" cy="180" r="158" fill="none" stroke="var(--outline-variant)" stroke-width="1.5" stroke-dasharray="5 4"></circle>
+            <circle cx="230" cy="180" r="108" fill="none" stroke="var(--amber)" stroke-width="1.5" stroke-dasharray="4 4"></circle>
+            <circle cx="230" cy="180" r="62" fill="var(--amazon-soft)" stroke="var(--amazon)" stroke-width="2"></circle>
+
+            <!-- Ring Labels -->
+            <text x="230" y="34" text-anchor="middle" font-family="var(--font-label)" font-size="10" fill="var(--on-surface-variant)">ANILLO SECUNDARIO · INSTITUCIONAL Y SEGURIDAD</text>
+            <text x="230" y="84" text-anchor="middle" font-family="var(--font-label)" font-size="10" fill="var(--amber-text)">INTERMEDIARIO</text>
+            <text x="230" y="176" text-anchor="middle" font-family="var(--font-headline)" font-size="12" font-weight="700" fill="var(--amazon)">ZUT VALLE DEL</text>
+            <text x="230" y="192" text-anchor="middle" font-family="var(--font-headline)" font-size="12" font-weight="700" fill="var(--amazon)">GUAMUEZ</text>
+
+            <!-- Primarios -->
+            <g class="svg-node" data-actor-node="comandos" data-cat="primario" onclick="selectActorNode('comandos')" tabindex="0" role="button" aria-label="Comandos de la Frontera">
+              <rect x="86" y="148" width="112" height="52" rx="6" fill="var(--amazon)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="142" y="170" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Comandos de la</text>
+              <text x="142" y="185" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Frontera (CNEB)</text>
+            </g>
+
+            <g class="svg-node" data-actor-node="comunidades" data-cat="primario" onclick="selectActorNode('comunidades')" tabindex="0" role="button" aria-label="Comunidades del territorio">
+              <rect x="262" y="148" width="112" height="52" rx="6" fill="var(--amazon)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="318" y="170" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Comunidades</text>
+              <text x="318" y="185" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">del Territorio</text>
+            </g>
+
+            <!-- Intermediario -->
+            <g class="svg-node" data-actor-node="ccdp" data-cat="intermediario" onclick="selectActorNode('ccdp')" tabindex="0" role="button" aria-label="Consejería Comisionada de Paz">
+              <rect x="148" y="256" width="164" height="44" rx="6" fill="var(--amber)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="230" y="275" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary-container)">Consejería Comisionada</text>
+              <text x="230" y="290" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary-container)">de Paz (CCDP)</text>
+            </g>
+
+            <!-- Secundarios -->
+            <g class="svg-node" data-actor-node="gobierno" data-cat="secundario" onclick="selectActorNode('gobierno')" tabindex="0" role="button" aria-label="Gobierno nacional">
+              <rect x="26" y="48" width="132" height="44" rx="6" fill="var(--petrol)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="92" y="74" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Gobierno Nacional</text>
+            </g>
+
+            <g class="svg-node" data-actor-node="arn" data-cat="secundario" onclick="selectActorNode('arn')" tabindex="0" role="button" aria-label="Agencia para la Reincorporación y la Normalización">
+              <rect x="302" y="48" width="132" height="44" rx="6" fill="var(--petrol)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="368" y="74" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">ARN</text>
+            </g>
+
+            <g class="svg-node" data-actor-node="fuerza" data-cat="secundario" onclick="selectActorNode('fuerza')" tabindex="0" role="button" aria-label="Fuerza pública y autoridades judiciales">
+              <rect x="14" y="298" width="170" height="44" rx="6" fill="var(--petrol)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="99" y="317" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" font-weight="700" fill="var(--on-primary)">Fuerza Pública y</text>
+              <text x="99" y="331" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" font-weight="700" fill="var(--on-primary)">Autoridades Judiciales</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="actor-cards-grid" id="actor-cards-grid">
+          <button type="button" class="actor-card" data-actor-card="comandos" data-cat="primario" onclick="selectActorNode('comandos')">
+            <span class="tag tag--primary">Primario · CNEB</span>
+            <h3>Comandos de la Frontera</h3>
+            <p>Estructura perteneciente a la Coordinadora Nacional Ejército Bolivariano (CNEB). 99 integrantes iniciaron su tránsito a la vida civil en la ZUT (junio 2026) y requieren garantías de seguridad y claridad jurídica.</p>
+          </button>
+
+          <button type="button" class="actor-card" data-actor-card="comunidades" data-cat="primario" onclick="selectActorNode('comunidades')">
+            <span class="tag tag--primary">Primario · Territorio</span>
+            <h3>Comunidades campesinas, indígenas y afrodescendientes</h3>
+            <p>Poblaciones de Valle del Guamuez directamente afectadas por el conflicto armado; exigen protección, movilidad segura, participación y respeto efectivo de sus derechos territoriales.</p>
+          </button>
+
+          <button type="button" class="actor-card" data-actor-card="gobierno" data-cat="secundario" onclick="selectActorNode('gobierno')">
+            <span class="tag tag--secondary">Secundario · Ejecutivo</span>
+            <h3>Gobierno nacional</h3>
+            <p>Responsable de las decisiones políticas, normativas e institucionales relacionadas con la mesa de diálogo, los actos administrativos de la ZUT y las garantías del proceso.</p>
+          </button>
+
+          <button type="button" class="actor-card" data-actor-card="arn" data-cat="secundario" onclick="selectActorNode('arn')">
+            <span class="tag tag--secondary">Secundario · Reincorporación</span>
+            <h3>Agencia para la Reincorporación y la Normalización (ARN)</h3>
+            <p>Entidad encargada de ejecutar la ruta de atención y acompañamiento institucional a quienes iniciaron el tránsito hacia la vida civil, manteniendo la atención tras el cierre de la ZUT.</p>
+          </button>
+
+          <button type="button" class="actor-card" data-actor-card="fuerza" data-cat="secundario" onclick="selectActorNode('fuerza')">
+            <span class="tag tag--secondary">Secundario · Ley y Defensa</span>
+            <h3>Fuerza Pública y Autoridades Judiciales</h3>
+            <p>Instituciones responsables de cumplir funciones constitucionales de seguridad, protección de la población civil, control territorial y aplicación de la ley.</p>
+          </button>
+
+          <button type="button" class="actor-card" data-actor-card="ccdp" data-cat="intermediario" onclick="selectActorNode('ccdp')">
+            <span class="tag tag--intermediary">Intermediario · Diálogo</span>
+            <h3>Consejería Comisionada de Paz (CCDP)</h3>
+            <p>Instancia facilitadora del diálogo y articulación institucional entre el Gobierno nacional, la estructura armada y las entidades responsables de la implementación.</p>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PARTICIPACIÓN, POSICIONES, INTERESES Y NECESIDADES -->
+    <section class="poster-section reveal-section" id="poster-2">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--petrol">02</span>
+          <span class="dossier-meta">PARTICIPACIÓN E INTERESES · MODELO PIN</span>
+        </div>
+        <span class="dossier-meta">LECTURA ANALÍTICA DEL EQUIPO</span>
+      </div>
+      <h2 class="section-title">Posiciones, intereses y necesidades de cada actor</h2>
+      <p class="section-lede">Diferenciación analítica entre lo que cada actor manifiesta públicamente (<strong>Posición</strong>), lo que busca alcanzar (<strong>Interés</strong>) y las condiciones materiales o institucionales indispensables para lograrlo (<strong>Necesidad</strong>).</p>
+
+      <div class="filter-row" role="group" aria-label="Filtrar actores en matriz PIN">
+        <button type="button" class="btn-pill is-selected" onclick="filterPin('all', this)">Ver todos (6)</button>
+        <button type="button" class="btn-pill" onclick="filterPin('comandos', this)">Comandos de la Frontera</button>
+        <button type="button" class="btn-pill" onclick="filterPin('comunidades', this)">Comunidades</button>
+        <button type="button" class="btn-pill" onclick="filterPin('gobierno', this)">Gobierno Nacional</button>
+        <button type="button" class="btn-pill" onclick="filterPin('arn', this)">ARN</button>
+        <button type="button" class="btn-pill" onclick="filterPin('fuerza', this)">Fuerza Pública y Judicial</button>
+        <button type="button" class="btn-pill" onclick="filterPin('ccdp', this)">Consejería de Paz</button>
+      </div>
+
+      <div class="pin-grid" id="pin-grid">
+        <article class="pin-card" data-pin-actor="comandos">
+          <div class="pin-card-header">
+            <h3>Comandos de la Frontera (CNEB)</h3>
+            <span class="tag tag--primary">Primario</span>
+          </div>
+          <div class="pin-row pin-row--pos">
+            <span class="pin-row-label">Posición (lo que manifiestan)</span>
+            <p>Solicitan garantías concretas y continuidad para sostener el proceso de tránsito a la vida civil iniciado en la ZUT.</p>
+          </div>
+          <div class="pin-row pin-row--int">
+            <span class="pin-row-label">Interés (lo que buscan)</span>
+            <p>Avanzar hacia la vida civil en condiciones de protección y definir su situación jurídica ante el Estado.</p>
+          </div>
+          <div class="pin-row pin-row--nec">
+            <span class="pin-row-label">Necesidad (condiciones requeridas)</span>
+            <p>Seguridad física, atención institucional continua, rutas económicas legales y claridad sobre la ruta jurídica.</p>
+          </div>
+        </article>
+
+        <article class="pin-card" data-pin-actor="comunidades">
+          <div class="pin-card-header">
+            <h3>Comunidades campesinas, indígenas y afro</h3>
+            <span class="tag tag--primary">Primario</span>
+          </div>
+          <div class="pin-row pin-row--pos">
+            <span class="pin-row-label">Posición (lo que manifiestan)</span>
+            <p>Exigen protección efectiva frente a riesgos armados y respeto pleno por sus derechos humanos y territoriales.</p>
+          </div>
+          <div class="pin-row pin-row--int">
+            <span class="pin-row-label">Interés (lo que buscan)</span>
+            <p>Vivir con tranquilidad, preservar su autonomía organizativa y desarrollar sus actividades cotidianas sin amenazas.</p>
+          </div>
+          <div class="pin-row pin-row--nec">
+            <span class="pin-row-label">Necesidad (condiciones requeridas)</span>
+            <p>Protección integral, movilidad segura, participación vinculante y oportunidades productivas y sociales estables.</p>
+          </div>
+        </article>
+
+        <article class="pin-card" data-pin-actor="gobierno">
+          <div class="pin-card-header">
+            <h3>Gobierno nacional</h3>
+            <span class="tag tag--secondary">Secundario</span>
+          </div>
+          <div class="pin-row pin-row--pos">
+            <span class="pin-row-label">Posición (lo que manifiestan)</span>
+            <p>Establecer condiciones normativas y decisiones políticas para encauzar el proceso de diálogo y la vigencia de la ZUT.</p>
+          </div>
+          <div class="pin-row pin-row--int">
+            <span class="pin-row-label">Interés (lo que buscan)</span>
+            <p>Cumplir sus responsabilidades constitucionales, políticas y legales asegurando gobernabilidad en el territorio.</p>
+          </div>
+          <div class="pin-row pin-row--nec">
+            <span class="pin-row-label">Necesidad (condiciones requeridas)</span>
+            <p>Coordinación interinstitucional, marco jurídico sólido y capacidad operativa sostenida en la región amazónica.</p>
+          </div>
+        </article>
+
+        <article class="pin-card" data-pin-actor="arn">
+          <div class="pin-card-header">
+            <h3>Agencia para la Reincorporación (ARN)</h3>
+            <span class="tag tag--secondary">Secundario</span>
+          </div>
+          <div class="pin-row pin-row--pos">
+            <span class="pin-row-label">Posición (lo que manifiestan)</span>
+            <p>Mantener la atención a las personas en tránsito a la vida civil dentro de sus competencias, incluso tras el cierre de la ZUT.</p>
+          </div>
+          <div class="pin-row pin-row--int">
+            <span class="pin-row-label">Interés (lo que buscan)</span>
+            <p>Acompañar de forma ordenada y efectiva el tránsito a la vida civil sin suspender la ruta institucional iniciada.</p>
+          </div>
+          <div class="pin-row pin-row--nec">
+            <span class="pin-row-label">Necesidad (condiciones requeridas)</span>
+            <p>Recursos financieros y técnicos, articulación territorial y claridad de responsabilidades entre entidades.</p>
+          </div>
+        </article>
+
+        <article class="pin-card" data-pin-actor="fuerza">
+          <div class="pin-card-header">
+            <h3>Fuerza Pública y Autoridades Judiciales</h3>
+            <span class="tag tag--secondary">Secundario</span>
+          </div>
+          <div class="pin-row pin-row--pos">
+            <span class="pin-row-label">Posición (lo que manifiestan)</span>
+            <p>Cumplir sus deberes constitucionales de seguridad ciudadana, control institucional y aplicación de la ley.</p>
+          </div>
+          <div class="pin-row pin-row--int">
+            <span class="pin-row-label">Interés (lo que buscan)</span>
+            <p>Proteger a la población civil, prevenir delitos y preservar el orden jurídico en Valle del Guamuez.</p>
+          </div>
+          <div class="pin-row pin-row--nec">
+            <span class="pin-row-label">Necesidad (condiciones requeridas)</span>
+            <p>Capacidad operativa desplegada, coordinación con autoridades civiles y claridad jurídica sobre medidas de transición.</p>
+          </div>
+        </article>
+
+        <article class="pin-card" data-pin-actor="ccdp">
+          <div class="pin-card-header">
+            <h3>Consejería Comisionada de Paz (CCDP)</h3>
+            <span class="tag tag--intermediary">Intermediario</span>
+          </div>
+          <div class="pin-row pin-row--pos">
+            <span class="pin-row-label">Posición (lo que manifiestan)</span>
+            <p>Facilitar el diálogo y articular los canales entre el Gobierno nacional, la CNEB y las entidades estatales.</p>
+          </div>
+          <div class="pin-row pin-row--int">
+            <span class="pin-row-label">Interés (lo que buscan)</span>
+            <p>Contribuir al desarrollo de los compromisos alcanzados en los ciclos de diálogo y evitar rupturas del proceso.</p>
+          </div>
+          <div class="pin-row pin-row--nec">
+            <span class="pin-row-label">Necesidad (condiciones requeridas)</span>
+            <p>Canales fluidos de interlocución, verificación confiable y respaldo interinstitucional para sostener acuerdos.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. FUENTES DE PODER DE LOS ACTORES -->
+    <section class="poster-section reveal-section" id="poster-3">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--amazon">03</span>
+          <span class="dossier-meta">FUENTES DE PODER DE LOS ACTORES</span>
+        </div>
+        <span class="dossier-meta">5 DIMENSIONES DE CAPACIDAD</span>
+      </div>
+      <h2 class="section-title">Fuentes de poder presentes en el conflicto territorial</h2>
+      <p class="section-lede">Tipología de las cinco fuentes de poder que configuran la asimetría e incidencia de los actores en Valle del Guamuez. Estas categorías describen naturalezas de influencia cualitativamente distintas y no equivalencia entre actores.</p>
+
+      <div class="power-sources-grid">
+        <article class="power-source-card">
+          <span class="index-num">01 · LEGAL E INSTITUCIONAL</span>
+          <h3>Poder normativo y jurídico</h3>
+          <p class="power-source-actor">Gobierno nacional y Autoridades Judiciales</p>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Facultad exclusiva para expedir resoluciones, definir marcos jurídicos de transición, adoptar medidas administrativas y exigir el cumplimiento de la ley.</p>
+        </article>
+
+        <article class="power-source-card">
+          <span class="index-num">02 · INSTITUCIONAL</span>
+          <h3>Poder técnico y operativo</h3>
+          <p class="power-source-actor">Agencia para la Reincorporación y la Normalización (ARN)</p>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Competencias administrativas, equipo territorial y rutas programáticas para ejecutar la atención y el acompañamiento hacia la vida civil.</p>
+        </article>
+
+        <article class="power-source-card power-source-card--error">
+          <span class="index-num" style="color: var(--error);">03 · ARMADO Y TERRITORIAL</span>
+          <h3>Poder coercitivo y de presencia</h3>
+          <p class="power-source-actor" style="color: var(--error);">Comandos de la Frontera (CNEB)</p>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Capacidad armada y presencia en corredores rurales fronterizos que incide directamente en las condiciones de seguridad y control cotidiano.</p>
+        </article>
+
+        <article class="power-source-card power-source-card--amber">
+          <span class="index-num" style="color: var(--amber-text);">04 · ECONÓMICO</span>
+          <h3>Poder remunerativo y rentas</h3>
+          <p class="power-source-actor" style="color: var(--amber-text);">Economías legales e ilegales del territorio</p>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Flujos de ingresos, cultivos de uso ilícito y disputas por recursos productivos que condicionan el sustento familiar y las tensiones territoriales.</p>
+        </article>
+
+        <article class="power-source-card power-source-card--amazon">
+          <span class="index-num" style="color: var(--amazon);">05 · SOCIAL Y MORAL</span>
+          <h3>Poder organizativo y legitimidad</h3>
+          <p class="power-source-actor">Comunidades campesinas, indígenas y afrodescendientes</p>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Organización social, liderazgo étnico-campesino, participación comunitaria y legitimidad moral para defender derechos y exigir protección.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 4. MANIFESTACIÓN DEL PODER Y CAPACIDAD DE INFLUENCIA -->
+    <section class="poster-section reveal-section" id="poster-4">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">04</span>
+          <span class="dossier-meta">MANIFESTACIÓN DEL PODER Y CAPACIDAD DE INFLUENCIA</span>
+        </div>
+        <span class="dossier-meta">EJERCICIO PRÁCTICO EN TERRITORIO</span>
+      </div>
+      <h2 class="section-title">¿Cómo ejerce y manifiesta su poder cada actor en Valle del Guamuez?</h2>
+      <p class="section-lede">Análisis del modo concreto en que cada actor despliega sus capacidades de influencia, así como sus alcances reales y limitaciones estructurales dentro del caso estudiado.</p>
+
+      <div class="manifestation-layout">
+        <div class="selector-stack" role="tablist" aria-label="Seleccionar actor para ver manifestación de poder">
+          <button type="button" class="selector-btn is-active" onclick="selectPowerManifest('comandos', this)">
+            <div>
+              <span class="selector-btn-title">Comandos de la Frontera</span>
+              <span class="selector-btn-sub">Coerción armada y control territorial</span>
+            </div>
+            <span class="index-num">01</span>
+          </button>
+          <button type="button" class="selector-btn" onclick="selectPowerManifest('gobierno', this)">
+            <div>
+              <span class="selector-btn-title">Gobierno Nacional y Judiciales</span>
+              <span class="selector-btn-sub">Autoridad normativa y regulatoria</span>
+            </div>
+            <span class="index-num">02</span>
+          </button>
+          <button type="button" class="selector-btn" onclick="selectPowerManifest('arn', this)">
+            <div>
+              <span class="selector-btn-title">ARN</span>
+              <span class="selector-btn-sub">Operatividad técnica e institucional</span>
+            </div>
+            <span class="index-num">03</span>
+          </button>
+          <button type="button" class="selector-btn" onclick="selectPowerManifest('economias', this)">
+            <div>
+              <span class="selector-btn-title">Economías territoriales</span>
+              <span class="selector-btn-sub">Poder remunerativo e ilícito</span>
+            </div>
+            <span class="index-num">04</span>
+          </button>
+          <button type="button" class="selector-btn" onclick="selectPowerManifest('comunidades', this)">
+            <div>
+              <span class="selector-btn-title">Comunidades del territorio</span>
+              <span class="selector-btn-sub">Legitimidad moral y resistencia</span>
+            </div>
+            <span class="index-num">05</span>
+          </button>
+        </div>
+
+        <article class="detail-dossier" id="power-manifest-detail" aria-live="polite">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm); border-bottom: 1px solid var(--outline-variant); padding-bottom: var(--space-sm);">
+          <div>
+            <span class="tag tag--secondary">Poder armado y territorial</span>
+            <h3 style="font-family: var(--font-headline); font-size: 1.375rem; margin: var(--space-xs) 0 0 0;">Comandos de la Frontera (CNEB)</h3>
+          </div>
+        </div>
+        <div class="detail-dossier-grid">
+          <div class="sub-panel">
+            <h4>Mecanismo de ejercicio</h4>
+            <p>Coerción armada e incidencia directa en las dinámicas de seguridad cotidiana y control de corredores rurales.</p>
+          </div>
+          <div class="sub-panel">
+            <h4>Recursos y capacidades</h4>
+            <p>Presencia histórica en zonas de frontera, estructura organizativa armada y participación de 99 integrantes en la ZUT.</p>
+          </div>
+          <div class="sub-panel">
+            <h4>Alcance territorial</h4>
+            <p>Su presencia armada y territorial condiciona la percepción de seguridad de las comunidades y la viabilidad de los acuerdos en el municipio.</p>
+          </div>
+          <div class="sub-panel">
+            <h4>Limitaciones estructurales</h4>
+            <p>Su tránsito hacia la vida civil depende de decisiones jurídicas del Estado, de garantías reales de seguridad y del cumplimiento de los ciclos de diálogo.</p>
+          </div>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <!-- 5. RELACIONES DOCUMENTADAS ENTRE ACTORES -->
+    <section class="poster-section reveal-section" id="poster-5">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--petrol">05</span>
+          <span class="dossier-meta">RELACIONES DOCUMENTADAS ENTRE ACTORES</span>
+        </div>
+        <span class="dossier-meta">CONVENCIONES CROMÁTICAS DIFERENCIADAS</span>
+      </div>
+      <h2 class="section-title">Red de cooperación, tensiones de negociación y confrontaciones territoriales</h2>
+      <p class="section-lede">Esquema relacional sustentado en documentos públicos, resoluciones y alertas territoriales. Filtre por tipo de vínculo o seleccione una relación para examinar su respaldo documental.</p>
+
+      <div class="filter-row" role="group" aria-label="Filtrar tipo de relación">
+        <button type="button" class="btn-pill is-selected" onclick="filterRelations('all', this)">Todas las relaciones (6)</button>
+        <button type="button" class="btn-pill btn-pill--amazon" onclick="filterRelations('coop', this)">Alianzas y cooperación</button>
+        <button type="button" class="btn-pill btn-pill--amber" onclick="filterRelations('tension', this)">Tensiones / desconfianza</button>
+        <button type="button" class="btn-pill btn-pill--error" onclick="filterRelations('conflict', this)">Confrontaciones / disputas</button>
+      </div>
+
+      <div class="legend-bar" aria-label="Convenciones del mapa de relaciones">
+        <span class="legend-item"><span class="legend-line legend-line--coop"></span> Línea gruesa verde: Alianzas y cooperación institucional</span>
+        <span class="legend-item"><span class="legend-line legend-line--tension"></span> Línea punteada naranja: Tensiones o negociación con desconfianza</span>
+        <span class="legend-item"><span class="legend-line legend-line--conflict"></span> Rayo / línea roja: Confrontación o disputa territorial documentada</span>
+      </div>
+
+      <div class="network-layout">
+        <div class="diagram-panel">
+          <span class="meta-item-label">Grafo interactivo de vínculos territoriales</span>
+          <svg class="svg-frame" viewBox="0 0 560 390" role="img" aria-label="Diagrama de relaciones entre actores en Valle del Guamuez">
+            <rect x="0" y="0" width="560" height="390" rx="6" fill="var(--surface-container-low)"></rect>
+
+            <!-- Edges -->
+            <!-- Coop: Gobierno - CCDP (thick green) -->
+            <line id="edge-gob-ccdp" data-rel-type="coop" x1="160" y1="74" x2="280" y2="178" stroke="var(--amazon)" stroke-width="4.5" stroke-linecap="round"></line>
+            <!-- Coop: Gobierno - ARN (thick green) -->
+            <line id="edge-gob-arn" data-rel-type="coop" x1="160" y1="68" x2="405" y2="68" stroke="var(--amazon)" stroke-width="4.5" stroke-linecap="round"></line>
+            <!-- Coop: Gobierno - Fuerza Pública (thick green) -->
+            <line id="edge-gob-fp" data-rel-type="coop" x1="115" y1="92" x2="115" y2="292" stroke="var(--amazon)" stroke-width="4.5" stroke-linecap="round"></line>
+            <!-- Coop: ARN - Comandos en tránsito (thick green) -->
+            <line id="edge-arn-comandos" data-rel-type="coop" x1="418" y1="92" x2="418" y2="292" stroke="var(--amazon)" stroke-width="4.5" stroke-linecap="round"></line>
+
+            <!-- Tension: CCDP/Gobierno - Comandos (dashed amber) -->
+            <line id="edge-ccdp-comandos" data-rel-type="tension" x1="305" y1="195" x2="395" y2="295" stroke="var(--amber)" stroke-width="3.5" stroke-dasharray="7 5"></line>
+            <!-- Tension: Comunidades - Institucionalidad (dashed amber) -->
+            <line id="edge-com-gob" data-rel-type="tension" x1="255" y1="312" x2="148" y2="92" stroke="var(--amber)" stroke-width="3" stroke-dasharray="7 5"></line>
+
+            <!-- Conflict / Dispute: Estructuras/Economías ilícitas vs Seguridad Comunitaria & Fuerza Pública (red lightning bolt path) -->
+            <polyline id="edge-conflict-com" data-rel-type="conflict" points="355,320 335,305 322,328 302,312 288,332 268,318" fill="none" stroke="var(--error)" stroke-width="3.5" stroke-linejoin="round"></polyline>
+            <polyline id="edge-conflict-fp" data-rel-type="conflict" points="168,318 228,335 245,310 355,326" fill="none" stroke="var(--error)" stroke-width="3" stroke-linejoin="round" opacity="0.85"></polyline>
+
+            <!-- Actor Nodes -->
+            <g transform="translate(55,44)">
+              <rect width="130" height="48" rx="6" fill="var(--petrol)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="65" y="28" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" font-weight="700" fill="var(--on-primary)">Gobierno Nacional</text>
+            </g>
+
+            <g transform="translate(355,44)">
+              <rect width="130" height="48" rx="6" fill="var(--petrol)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="65" y="28" text-anchor="middle" font-family="var(--font-body)" font-size="11.5" font-weight="700" fill="var(--on-primary)">ARN</text>
+            </g>
+
+            <g transform="translate(215,156)">
+              <rect width="146" height="48" rx="6" fill="var(--amber)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="73" y="22" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary-container)">Consejería de Paz</text>
+              <text x="73" y="37" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" font-weight="600" fill="var(--on-primary-container)">(Intermediario)</text>
+            </g>
+
+            <g transform="translate(38,292)">
+              <rect width="142" height="52" rx="6" fill="var(--petrol)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="71" y="23" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Fuerza Pública y</text>
+              <text x="71" y="38" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Aut. Judiciales</text>
+            </g>
+
+            <g transform="translate(208,292)">
+              <rect width="130" height="52" rx="6" fill="var(--amazon)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="65" y="23" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Comunidades</text>
+              <text x="65" y="38" text-anchor="middle" font-family="var(--font-body)" font-size="10.5" font-weight="600" fill="var(--on-primary)">Campesinas y Étnicas</text>
+            </g>
+
+            <g transform="translate(362,292)">
+              <rect width="154" height="52" rx="6" fill="var(--amazon)" stroke="var(--surface-container-low)" stroke-width="2"></rect>
+              <text x="77" y="23" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Comandos de la</text>
+              <text x="77" y="38" text-anchor="middle" font-family="var(--font-body)" font-size="11" font-weight="700" fill="var(--on-primary)">Frontera (CNEB)</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="relation-list" id="relation-list">
+          <article class="relation-item" data-rel-cat="coop">
+            <span class="tag tag--primary">Alianza y coordinación</span>
+            <h4>Gobierno Nacional ↔ Consejería de Paz ↔ ARN</h4>
+            <p>Articulación ejecutiva para definir el marco normativo de la ZUT (Resolución 053 de 2026) y asegurar la continuidad de atención técnica de la ARN tras septiembre de 2026.</p>
+          </article>
+
+          <article class="relation-item" data-rel-cat="coop">
+            <span class="tag tag--primary">Cooperación institucional</span>
+            <h4>Gobierno Nacional ↔ Fuerza Pública y Autoridades Judiciales</h4>
+            <p>Coordinación de funciones constitucionales de seguridad, protección poblacional y aplicación de la ley en los corredores rurales y urbanos de Valle del Guamuez.</p>
+          </article>
+
+          <article class="relation-item" data-rel-cat="coop">
+            <span class="tag tag--primary">Acompañamiento de tránsito</span>
+            <h4>ARN ↔ 99 Integrantes en tránsito a la vida civil</h4>
+            <p>Relación de atención institucional y seguimiento de ruta individual, mantenida por disposición oficial de la ARN pese al cierre físico de la ZUT.</p>
+          </article>
+
+          <article class="relation-item relation-item--tension" data-rel-cat="tension">
+            <span class="tag tag--intermediary">Negociación con desconfianza</span>
+            <h4>Gobierno / CCDP ↔ Comandos de la Frontera (CNEB)</h4>
+            <p>Interlocución en ocho ciclos de diálogo (julio 2026), tensionada por dificultades jurídicas e institucionales alrededor de la continuidad de la ZUT y garantías de seguridad.</p>
+          </article>
+
+          <article class="relation-item relation-item--tension" data-rel-cat="tension">
+            <span class="tag tag--intermediary">Demandas de protección</span>
+            <h4>Comunidades ↔ Institucionalidad estatal</h4>
+            <p>Tensión derivada de la desconfianza histórica frente a las garantías de seguridad y la insuficiencia de presencia estatal integral en veredas apartadas.</p>
+          </article>
+
+          <article class="relation-item relation-item--conflict" data-rel-cat="conflict">
+            <span class="tag tag--danger">Disputa territorial documentada</span>
+            <h4>Estructuras armadas / economías ilícitas ↔ Seguridad comunitaria y control estatal</h4>
+            <p>Afectaciones históricas documentadas (Alerta Temprana 054-18): amenazas, restricciones de movilidad, desplazamientos y disputas por economías de uso ilícito.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. LÍNEA DE TIEMPO -->
+    <section class="poster-section reveal-section" id="poster-6">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--amazon">06</span>
+          <span class="dossier-meta">LÍNEA DE TIEMPO · MEMORIA DEL CONFLICTO E HITOS ZUT</span>
+        </div>
+        <span class="dossier-meta">ANTECEDENTE 2018 · PROCESO DIC 2025 – SEP 2026</span>
+      </div>
+      <h2 class="section-title">Cronología verificada de antecedentes, creación y cierre formal de la ZUT</h2>
+      <p class="section-lede">Secuencia de acontecimientos clave documentados desde el antecedente de alerta temprana hasta las decisiones institucionales recientes. Haga clic en cualquier hito para revisar su detalle.</p>
+
+      <div class="timeline-track-wrap">
+        <div class="timeline-steps" role="tablist" aria-label="Hitos cronológicos del conflicto y la ZUT">
+          <button type="button" class="timeline-node" onclick="selectTimeline(0, this)">
+            <span class="timeline-date">20 Jun 2018</span>
+            <span class="timeline-short">Alerta Temprana Estructural 054-18</span>
+          </button>
+          <button type="button" class="timeline-node" onclick="selectTimeline(1, this)">
+            <span class="timeline-date">05–19 Dic 2025</span>
+            <span class="timeline-short">Acuerdo y Declaración conjunta ZUT</span>
+          </button>
+          <button type="button" class="timeline-node" onclick="selectTimeline(2, this)">
+            <span class="timeline-date">25 Feb 2026</span>
+            <span class="timeline-short">Creación formal: Resolución 053 de 2026</span>
+          </button>
+          <button type="button" class="timeline-node" onclick="selectTimeline(3, this)">
+            <span class="timeline-date">26 Abr 2026</span>
+            <span class="timeline-short">Aprobación de hoja de ruta de diálogo</span>
+          </button>
+          <button type="button" class="timeline-node is-active" onclick="selectTimeline(4, this)">
+            <span class="timeline-date">18 Jun 2026</span>
+            <span class="timeline-short">Ingreso de 99 integrantes CNEB a la ZUT</span>
+          </button>
+          <button type="button" class="timeline-node" onclick="selectTimeline(5, this)">
+            <span class="timeline-date">24 Jul 2026</span>
+            <span class="timeline-short">Acuerdos del octavo ciclo de diálogos</span>
+          </button>
+          <button type="button" class="timeline-node" onclick="selectTimeline(6, this)">
+            <span class="timeline-date">Sep 2026</span>
+            <span class="timeline-short">Cierre de ZUT y continuidad de ruta ARN</span>
+          </button>
+        </div>
+
+        <article class="timeline-detail-card" id="timeline-detail" aria-live="polite">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm);">
+          <span class="tag tag--primary">18 de junio de 2026</span>
+          <span class="tag tag--neutral">Hito territorial</span>
+        </div>
+        <h3 style="font-family: var(--font-headline); font-size: 1.25rem; margin: 0;">Ingreso de 99 integrantes de Comandos de la Frontera a la ZUT</h3>
+        <p style="margin: 0; font-size: 0.96875rem; line-height: 1.55;">Noventa y nueve integrantes de los Comandos de la Frontera (CNEB) ingresan a la Zona de Ubicación Temporal en Valle del Guamuez en un escenario ligado a garantías de seguridad, derechos humanos y transformación económica.</p>
+        <span class="dossier-meta">Respaldo documental: Registro del caso ZUT Valle del Guamuez</span>
+      </article>
+      </div>
+    </section>
+
+    <!-- Componentes 7 Y 8: ÁRBOL DE PROBLEMAS ARTICULADO -->
+    <section class="poster-section reveal-section" id="poster-7-8">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--petrol">Componentes 07 Y 08</span>
+          <span class="dossier-meta">ÁRBOL DE PROBLEMAS ARTICULADO · CAUSAS, PROBLEMA Y EFECTOS</span>
+        </div>
+        <span class="dossier-meta">DIAGNÓSTICO SISTÉMICO</span>
+      </div>
+      <h2 class="section-title">Causas estructurales, problema central y efectos en el territorio</h2>
+      <p class="section-lede">Articulación directa entre las raíces institucionales, económicas y sociales-territoriales (<strong>8</strong>), el problema central (<strong>8</strong>) y sus consecuencias sobre la seguridad y la convivencia (<strong>7</strong>). Seleccione una dimensión causal para trazar su impacto.</p>
+
+      <div class="filter-row" role="group" aria-label="Resaltar rama del árbol de problemas">
+        <button type="button" class="btn-pill is-selected" onclick="highlightTree('all', this)">Ver árbol completo</button>
+        <button type="button" class="btn-pill" onclick="highlightTree('inst', this)">Causas políticas e institucionales</button>
+        <button type="button" class="btn-pill btn-pill--amber" onclick="highlightTree('econ', this)">Causas económicas</button>
+        <button type="button" class="btn-pill btn-pill--error" onclick="highlightTree('soc', this)">Causas sociales y territoriales</button>
+      </div>
+
+      <div class="tree-shell">
+        <div>
+          <span class="tree-tier-label">7. · Efectos directos e indirectos (Copa del árbol)</span>
+          <div class="effects-grid">
+            <article class="effect-leaf" data-tree-effect="soc inst">
+              <h4>01 · Seguridad</h4>
+              <p>Persistencia de la incertidumbre y el temor en las comunidades rurales y urbanas.</p>
+            </article>
+            <article class="effect-leaf" data-tree-effect="inst">
+              <h4>02 · Institucional</h4>
+              <p>Desconfianza ciudadana frente a las garantías institucionales de seguridad y protección.</p>
+            </article>
+            <article class="effect-leaf" data-tree-effect="econ soc">
+              <h4>03 · Territorial</h4>
+              <p>Riesgo de continuidad de dinámicas de violencia y eventual rearme en zonas vulnerables.</p>
+            </article>
+            <article class="effect-leaf" data-tree-effect="soc">
+              <h4>04 · Convivencia</h4>
+              <p>Dificultades para consolidar la convivencia pacífica y la construcción de paz territorial.</p>
+            </article>
+            <article class="effect-leaf" data-tree-effect="inst econ">
+              <h4>05 · Proceso</h4>
+              <p>Preocupación e incertidumbre frente a la continuidad del tránsito a la vida civil.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="central-trunk">
+          <span class="tree-tier-label">8. · Problema central (Tronco)</span>
+          <h3>Dificultades para garantizar el tránsito a la vida civil de los integrantes de Comandos de la Frontera y la seguridad de las comunidades en Valle del Guamuez, Putumayo.</h3>
+        </div>
+
+        <div>
+          <span class="tree-tier-label">8. · Causas estructurales (Raíces del problema)</span>
+          <div class="causes-grid">
+            <article class="cause-root cause-root--inst" data-tree-root="inst" onclick="highlightTree('inst', null)">
+              <h4>Políticas e institucionales</h4>
+              <ul>
+                <li>Presencia institucional insuficiente en sectores rurales y fronterizos.</li>
+                <li>Dificultades jurídicas y operativas para garantizar la continuidad de los compromisos del proceso.</li>
+                <li>Limitaciones en las garantías efectivas de seguridad tras la transición de la ZUT.</li>
+              </ul>
+            </article>
+
+            <article class="cause-root cause-root--econ" data-tree-root="econ" onclick="highlightTree('econ', null)">
+              <h4>Económicas</h4>
+              <ul>
+                <li>Escasas oportunidades de empleo formal e ingresos legales en el municipio.</li>
+                <li>Dependencia estructural de economías ilegales y cultivos de uso ilícito en ciertas zonas.</li>
+                <li>Falta de alternativas productivas sostenibles y encadenamientos comerciales estables.</li>
+              </ul>
+            </article>
+
+            <article class="cause-root cause-root--soc" data-tree-root="soc" onclick="highlightTree('soc', null)">
+              <h4>Sociales y territoriales</h4>
+              <ul>
+                <li>Afectaciones acumuladas por el conflicto armado (desplazamientos, amenazas, restricciones).</li>
+                <li>Desconfianza y temor persistente entre la población frente a nuevos escenarios de riesgo.</li>
+                <li>Necesidades urgentes de protección de comunidades campesinas, indígenas y afrodescendientes.</li>
+                <li>Debilitamiento del tejido social y comunitario.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. TRIÁNGULO DEL CONFLICTO DE JOHAN GALTUNG (MODELO ABC) -->
+    <section class="poster-section reveal-section" id="poster-9">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">09</span>
+          <span class="dossier-meta">TRIÁNGULO DEL CONFLICTO DE JOHAN GALTUNG · MODELO ABC</span>
+        </div>
+        <span class="dossier-meta">ACTITUDES · COMPORTAMIENTOS · CONTRADICCIONES</span>
+      </div>
+      <h2 class="section-title">La dimensión visible e invisible del conflicto: Modelo ABC de Galtung</h2>
+      <p class="section-lede">Aplicación exclusiva del Triángulo ABC para desagregar las percepciones subjetivas (<strong>A</strong>), las acciones observables (<strong>B</strong>) y las incompatibilidades estructurales de fondo (<strong>C</strong>) en la crisis de la ZUT de Valle del Guamuez.</p>
+
+      <div class="abc-layout">
+        <div style="display: grid; gap: var(--space-md);">
+          <svg class="svg-frame" viewBox="0 0 420 340" role="img" aria-label="Triángulo ABC del conflicto de Johan Galtung">
+            <rect x="0" y="0" width="420" height="340" rx="6" fill="var(--surface-container-low)"></rect>
+            <!-- Triangle Body -->
+            <polygon points="210,58 72,272 348,272" fill="var(--surface-container)" stroke="var(--petrol)" stroke-width="2.5"></polygon>
+            <!-- Inner Center Label -->
+            <text x="210" y="185" text-anchor="middle" font-family="var(--font-label)" font-size="11" font-weight="600" fill="var(--on-surface-variant)">CONFLICTO EN</text>
+            <text x="210" y="201" text-anchor="middle" font-family="var(--font-headline)" font-size="14" font-weight="700" fill="var(--petrol)">VALLE DEL GUAMUEZ</text>
+
+            <!-- Edge Labels -->
+            <text x="122" y="154" text-anchor="middle" transform="rotate(-57 122 154)" font-family="var(--font-label)" font-size="9.5" fill="var(--on-surface-variant)">PERCEPCIONES ↔ ACCIONES</text>
+            <text x="298" y="154" text-anchor="middle" transform="rotate(57 298 154)" font-family="var(--font-label)" font-size="9.5" fill="var(--on-surface-variant)">ACCIONES ↔ DILEMA</text>
+            <text x="210" y="292" text-anchor="middle" font-family="var(--font-label)" font-size="9.5" fill="var(--on-surface-variant)">TEMOR HISTÓRICO ↔ CONTRADICCIÓN ESTRUCTURAL</text>
+
+            <!-- Vertex B (Top) -->
+            <g class="svg-node" onclick="selectAbc('B')" tabindex="0" role="button" aria-label="Vértice B Comportamientos">
+              <circle id="abc-circle-B" cx="210" cy="58" r="36" fill="var(--amazon)" stroke="var(--surface-container-low)" stroke-width="3" opacity="0.72"></circle>
+              <text x="210" y="54" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="700" fill="var(--on-primary)">B</text>
+              <text x="210" y="70" text-anchor="middle" font-family="var(--font-label)" font-size="8.5" font-weight="600" fill="var(--on-primary)">CONDUCTAS</text>
+            </g>
+
+            <!-- Vertex A (Bottom Left) -->
+            <g class="svg-node" onclick="selectAbc('A')" tabindex="0" role="button" aria-label="Vértice A Actitudes">
+              <circle id="abc-circle-A" cx="72" cy="272" r="36" fill="var(--amber)" stroke="var(--surface-container-low)" stroke-width="5" opacity="1"></circle>
+              <text x="72" y="268" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="700" fill="var(--on-primary-container)">A</text>
+              <text x="72" y="284" text-anchor="middle" font-family="var(--font-label)" font-size="8.5" font-weight="600" fill="var(--on-primary-container)">ACTITUDES</text>
+            </g>
+
+            <!-- Vertex C (Bottom Right) -->
+            <g class="svg-node" onclick="selectAbc('C')" tabindex="0" role="button" aria-label="Vértice C Contradicciones">
+              <circle id="abc-circle-C" cx="348" cy="272" r="36" fill="var(--petrol)" stroke="var(--surface-container-low)" stroke-width="3" opacity="0.72"></circle>
+              <text x="348" y="268" text-anchor="middle" font-family="var(--font-headline)" font-size="18" font-weight="700" fill="var(--on-primary)">C</text>
+              <text x="348" y="284" text-anchor="middle" font-family="var(--font-label)" font-size="8.5" font-weight="600" fill="var(--on-primary)">CONTRADICCIÓN</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="abc-detail-panel" id="abc-detail-panel" aria-live="polite">
+        <div>
+          <span class="tag tag--secondary">Vértice A · Actitudes (Dimensión subjetiva)</span>
+          <h3 style="font-family: var(--font-headline); font-size: 1.3125rem; margin: var(--space-xs) 0 0 0;">Temores comunitarios, zozobra vital y cautela institucional</h3>
+        </div>
+        <ul style="margin: 0; padding-left: var(--space-md); display: grid; gap: var(--space-xs); font-size: 0.9375rem; line-height: 1.5;">
+          <li>Desconfianza histórica de las comunidades campesinas, indígenas y afrodescendientes frente a la efectividad y permanencia de las garantías de seguridad.</li><li>Zozobra e incertidumbre jurídica y vital entre los 99 excombatientes de Comandos de la Frontera respecto a su seguridad y futuro tras el cierre de la ZUT.</li><li>Cautela y tensión en las entidades estatales frente a los límites jurídicos y operativos para sostener compromisos en frontera.</li>
+        </ul>
+        <p style="margin: 0; font-size: 0.875rem; color: var(--on-surface-variant); border-top: 1px solid var(--outline-variant); padding-top: var(--space-sm);"><strong>Lectura analítica:</strong> Según Galtung, estas actitudes provienen tanto de experiencias acumuladas de violencia como de la falta de certezas institucionales.</p>
+      </div>
+      </div>
+
+      <div class="abc-summary-strip">
+        <article class="abc-mini-card is-active" data-abc-card="A" onclick="selectAbc('A')">
+          <span class="tag tag--intermediary">Vértice A · Dimensión invisible</span>
+          <h3 style="font-family: var(--font-headline); margin: var(--space-xs) 0;">Actitudes</h3>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Temor y desconfianza comunitaria histórica; zozobra e incertidumbre jurídica y vital de excombatientes; cautela institucional.</p>
+        </article>
+        <article class="abc-mini-card" data-abc-card="B" onclick="selectAbc('B')">
+          <span class="tag tag--primary">Vértice B · Dimensión visible</span>
+          <h3 style="font-family: var(--font-headline); margin: var(--space-xs) 0;">Comportamientos</h3>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Ingreso a la ZUT (junio 2026), Resolución 053 de 2026, ciclos de diálogo, exigibilidad de derechos y alertas comunitarias.</p>
+        </article>
+        <article class="abc-mini-card" data-abc-card="C" onclick="selectAbc('C')">
+          <span class="tag tag--secondary">Vértice C · Núcleo del conflicto</span>
+          <h3 style="font-family: var(--font-headline); margin: var(--space-xs) 0;">Contradicciones</h3>
+          <p style="margin: 0; font-size: 0.9375rem; color: var(--on-surface-variant);">Seguridad comunitaria vs. desmovilización; cierre formal de la ZUT vs. urgencia de acompañamiento; economías ilícitas vs. precariedad legal.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- 10. ANÁLISIS DE LA VIOLENCIA ESTRUCTURAL DE JOHAN GALTUNG -->
+    <section class="poster-section reveal-section" id="poster-10">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--amazon">10</span>
+          <span class="dossier-meta">ANÁLISIS TEÓRICO · VIOLENCIA ESTRUCTURAL (JOHAN GALTUNG, 1969)</span>
+        </div>
+        <span class="dossier-meta">DE LA PAZ NEGATIVA A LA PAZ POSITIVA</span>
+      </div>
+      <h2 class="section-title">De la violencia directa a la violencia estructural: condiciones para una Paz Positiva</h2>
+      <p class="section-lede">Desde la perspectiva de Johan Galtung (1969), la violencia no se agota en el enfrentamiento armado directo; se reproduce mediante estructuras sociales, económicas e institucionales que impiden satisfacer necesidades básicas y ejercer derechos en Valle del Guamuez.</p>
+
+      <div class="violence-flow">
+        <article class="v-stage v-stage--direct">
+          <span class="tag tag--danger">Manifestación directa</span>
+          <h3>Violencia directa en el territorio</h3>
+          <ul>
+            <li>Presencia armada y disputas por control de corredores estratégicos fronterizos.</li>
+            <li>Amenazas, desplazamientos y restricciones a la movilidad de la población civil.</li>
+            <li>Riesgos sobre la seguridad física de líderes comunitarios y personas en tránsito a la vida civil.</li>
+          </ul>
+        </article>
+
+        <article class="v-stage v-stage--structural">
+          <span class="tag tag--intermediary">Raíz estructural (Galtung)</span>
+          <h3>Violencia estructural en Valle del Guamuez</h3>
+          <ul>
+            <li><strong>Brechas socioeconómicas:</strong> Escasas oportunidades de empleo formal y dependencia de economías de uso ilícito.</li>
+            <li><strong>Exclusión histórica:</strong> Afectaciones acumuladas sobre el campesinado y pueblos indígenas y afrodescendientes.</li>
+            <li><strong>Precariedad de servicios públicos:</strong> Limitado acceso a educación, salud, protección estatal y desarrollo rural integral (PDET).</li>
+          </ul>
+        </article>
+
+        <article class="v-stage v-stage--positive">
+          <span class="tag tag--primary">Horizonte transformador</span>
+          <h3>Necesidad de Paz Positiva</h3>
+          <ul>
+            <li>No basta con suspender acciones armadas o sostener acuerdos parciales (<em>Paz Negativa</em>).</li>
+            <li>Se requiere transformar las condiciones estructurales que han permitido la permanencia del conflicto.</li>
+            <li>Implica superar desigualdades territoriales, garantizar derechos efectivos y construir condiciones de vida dignas para toda la población.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- PÁGINA EXPLICATIVA FINAL: MATRIZ INTERACTIVA DE LA ESTRATEGIA DE INTERVENCIÓN -->
+    <section class="poster-section reveal-section" id="estrategia">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill">PÁGINA EXPLICATIVA FINAL</span>
+          <span class="dossier-meta">ESTRATEGIA DE INTERVENCIÓN TERRITORIAL INTEGRAL</span>
+        </div>
+        <span class="dossier-meta">5 LÍNEAS ESTRATÉGICAS · INDICADORES VERIFICABLES</span>
+      </div>
+      <h2 class="section-title">Matriz de intervención territorial: acciones, responsables e indicadores</h2>
+      <p class="section-lede">Propuesta articulada a partir del diagnóstico obtenido. No busca determinar anticipadamente el cierre o continuidad definitiva de la ZUT, sino formular alternativas concretas, permanentes y participativas para garantizar la seguridad comunitaria y el tránsito a la vida civil.</p>
+
+      <div class="filter-row" role="group" aria-label="Filtrar líneas estratégicas de intervención">
+        <button type="button" class="btn-pill is-selected" onclick="filterStrategy('all', this)">Todas las líneas (5)</button>
+        <button type="button" class="btn-pill" onclick="filterStrategy('L1', this)">01 Continuidad ARN</button>
+        <button type="button" class="btn-pill" onclick="filterStrategy('L2', this)">02 Seguridad</button>
+        <button type="button" class="btn-pill" onclick="filterStrategy('L3', this)">03 Diálogo étnico-campesino</button>
+        <button type="button" class="btn-pill" onclick="filterStrategy('L4', this)">04 Proyectos productivos</button>
+        <button type="button" class="btn-pill" onclick="filterStrategy('L5', this)">05 Seguimiento</button>
+      </div>
+
+      <div class="strategy-table-wrap">
+        <table class="strategy-table" id="strategy-table">
+          <thead>
+            <tr>
+              <th style="width: 18%;">Línea estratégica</th>
+              <th style="width: 28%;">Acciones territoriales</th>
+              <th style="width: 19%;">Entidades responsables</th>
+              <th style="width: 16%;">Mecanismo de seguimiento</th>
+              <th style="width: 19%;">Indicadores verificables</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-strategy-line="L1">
+              <td>
+                <span class="index-num">LÍNEA 01</span><br>
+                <strong>Continuidad institucional y acompañamiento</strong>
+              </td>
+              <td>Garantizar la permanencia de rutas de atención psicosocial, jurídica y de reincorporación para las 99 personas que iniciaron el tránsito a la vida civil, con independencia del cierre físico de la ZUT.</td>
+              <td>Agencia para la Reincorporación y la Normalización (ARN), Gobierno nacional y Consejería Comisionada de Paz.</td>
+              <td>Comités periódicos de seguimiento interinstitucional y registro de atención activa en territorio.</td>
+              <td>Cobertura de atención individual sostenida sobre participantes registrados; actas de articulación y reportes trimestrales de avance de ruta.</td>
+            </tr>
+            <tr data-strategy-line="L2">
+              <td>
+                <span class="index-num">LÍNEA 02</span><br>
+                <strong>Garantías de seguridad y protección comunitaria</strong>
+              </td>
+              <td>Fortalecer medidas preventivas, planes de protección colectiva e individual y presencia coordinada en zonas rurales vulnerables para evitar nuevos escenarios de violencia o rearme.</td>
+              <td>Fuerza Pública, Autoridades Judiciales, Gobierno nacional y Defensoría del Pueblo (SAT).</td>
+              <td>Consejos territoriales de seguridad y monitoreo continuo de alertas tempranas vigentes.</td>
+              <td>Planes de protección territorial activados; tiempo de respuesta institucional ante alertas comunitarias; reducción documentada de incidentes de riesgo.</td>
+            </tr>
+            <tr data-strategy-line="L3">
+              <td>
+                <span class="index-num">LÍNEA 03</span><br>
+                <strong>Diálogo y participación comunitaria</strong>
+              </td>
+              <td>Instalar mesas permanentes de interlocución con comunidades campesinas, indígenas y afrodescendientes para recoger necesidades, reconocer afectaciones y construir soluciones locales.</td>
+              <td>Alcaldía Municipal de Valle del Guamuez, Consejería Comisionada de Paz y autoridades étnicas y campesinas.</td>
+              <td>Mesas territoriales participativas con actas públicas y delegados de cada sector poblacional.</td>
+              <td>Número de sesiones realizadas con representación campesina, indígena y afro; acuerdos comunitarios incorporados a la agenda municipal.</td>
+            </tr>
+            <tr data-strategy-line="L4">
+              <td>
+                <span class="index-num">LÍNEA 04</span><br>
+                <strong>Proyectos productivos y alternativas legales</strong>
+              </td>
+              <td>Impulsar proyectos productivos sostenibles, empleo legal y fortalecimiento de programas de educación, salud y desarrollo rural (articulados a PDET y Plan de Desarrollo 2024–2027).</td>
+              <td>Gobierno nacional, ARN, Alcaldía de Valle del Guamuez y entidades del sector agrícola y social.</td>
+              <td>Evaluación de viabilidad técnica y seguimiento a ejecución de proyectos productivos legales.</td>
+              <td>Iniciativas productivas legales formuladas y financiadas; hogares campesinos, étnicos y en tránsito vinculados a ingresos lícitos sostenibles.</td>
+            </tr>
+            <tr data-strategy-line="L5">
+              <td>
+                <span class="index-num">LÍNEA 05</span><br>
+                <strong>Seguimiento y evaluación de compromisos</strong>
+              </td>
+              <td>Establecer un sistema conjunto de verificación entre instituciones y comunidades para monitorear acuerdos, identificar obstáculos tempranos y corregir medidas de seguridad.</td>
+              <td>Mesa conjunta institucional-comunitaria, Veedurías ciudadanas, Defensoría del Pueblo y ARN.</td>
+              <td>Informes públicos semestrales de rendición de cuentas y tableros de cumplimiento de compromisos.</td>
+              <td>Porcentaje de compromisos verificados con evidencia documental; emisión oportuna de alertas y planes de ajuste institucional.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FUENTES DOCUMENTALES -->
+    <section class="poster-section reveal-section" id="fuentes">
+      <div class="dossier-bar">
+        <div class="dossier-bar-left">
+          <span class="dossier-pill dossier-pill--petrol">FUENTES VERIFICADAS</span>
+          <span class="dossier-meta">REFERENCIAS DOCUMENTALES, NORMATIVAS Y TEÓRICAS</span>
+        </div>
+        <span class="dossier-meta">RESPALDO DEL DIAGNÓSTICO</span>
+      </div>
+      <h2 class="section-title">Fuentes documentales y bibliografía de soporte</h2>
+      <p class="section-lede">Base documental institucional, normativa, territorial y académica utilizada para la caracterización del conflicto en Valle del Guamuez.</p>
+
+      <div class="bib-grid">
+        <article class="bib-card">
+          <span class="bib-num">01</span>
+          <div>
+            <span class="tag tag--neutral">Acuerdo</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Gobierno nacional y Coordinadora Nacional Ejército Bolivariano (CNEB)</strong> (19 de diciembre de 2025). Declaración conjunta sobre creación y lineamientos de la Zona de Ubicación Temporal.</p>
+          </div>
+        </article>
+
+        <article class="bib-card">
+          <span class="bib-num">02</span>
+          <div>
+            <span class="tag tag--neutral">Normativo</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Presidencia / Gobierno nacional</strong> (2026). Resolución 053 de 2026, mediante la cual se formaliza la Zona de Ubicación Temporal (ZUT) en Valle del Guamuez.</p>
+          </div>
+        </article>
+
+        <article class="bib-card">
+          <span class="bib-num">03</span>
+          <div>
+            <span class="tag tag--neutral">Acuerdo</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Mesa de Diálogos de Paz</strong> (24 de julio de 2026). Acuerdos del octavo ciclo de diálogos entre el Gobierno nacional y la CNEB.</p>
+          </div>
+        </article>
+
+        <article class="bib-card">
+          <span class="bib-num">04</span>
+          <div>
+            <span class="tag tag--neutral">Normativo</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Gobierno nacional</strong> (2026). Resolución Ejecutiva 389 de 2026 y comunicaciones oficiales de la Agencia para la Reincorporación y la Normalización (ARN) de septiembre de 2026.</p>
+          </div>
+        </article>
+
+        <article class="bib-card">
+          <span class="bib-num">05</span>
+          <div>
+            <span class="tag tag--neutral">Territorial</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Alcaldía Municipal de Valle del Guamuez</strong> (2024). Plan de Desarrollo Municipal 2024–2027: <em>Juntos avanzamos</em>.</p>
+          </div>
+        </article>
+
+        <article class="bib-card">
+          <span class="bib-num">06</span>
+          <div>
+            <span class="tag tag--neutral">Alertas</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Defensoría del Pueblo</strong> (20 de junio de 2018). Alerta Temprana Estructural 054-18. Sistema de Alertas Tempranas (SAT).</p>
+          </div>
+        </article>
+
+        <article class="bib-card">
+          <span class="bib-num">07</span>
+          <div>
+            <span class="tag tag--neutral">Territorial</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Municipio de Valle del Guamuez</strong> (2025). Informe de rendición de cuentas de paz 2024: Programas de Desarrollo con Enfoque Territorial (PDET).</p>
+          </div>
+        </article>
+
+        <article class="bib-card">
+          <span class="bib-num">08</span>
+          <div>
+            <span class="tag tag--neutral">Teórico</span>
+            <p style="margin: var(--space-xs) 0 0 0; font-size: 0.9375rem;"><strong>Galtung, J.</strong> (1969). Violence, Peace, and Peace Research. <em>Journal of Peace Research</em>, 6(3), 167–191. (Modelo ABC y Violencia Estructural).</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="canvas-footer">
+      <div><strong>CUN · Especialización en Paz y Desarrollo Territorial</strong> · Electiva de Profundización I · Actividad ACA II</div>
+      <div>Valle del Guamuez, Putumayo · Lienzo académico interactivo · 2026</div>
+    </footer>
+  </main>
+
+  <script>
+    /* Data Stores (Template Literals for Safe Escaping) */
+    const POWER_MANIFESTATIONS = {
+      comandos: {
+        badge: `Poder armado y territorial`,
+        actor: `Comandos de la Frontera (CNEB)`,
+        mecanismo: `Coerción armada e incidencia directa en las dinámicas de seguridad cotidiana y control de corredores rurales.`,
+        capacidades: `Presencia histórica en zonas de frontera, estructura organizativa armada y participación de 99 integrantes en la ZUT.`,
+        alcance: `Su presencia armada y territorial condiciona la percepción de seguridad de las comunidades y la viabilidad de los acuerdos en el municipio.`,
+        limitaciones: `Su tránsito hacia la vida civil depende de decisiones jurídicas del Estado, de garantías reales de seguridad y del cumplimiento de los ciclos de diálogo.`
+      },
+      gobierno: {
+        badge: `Autoridad normativa y regulatoria`,
+        actor: `Gobierno Nacional y Autoridades Judiciales`,
+        mecanismo: `Expedición de actos administrativos y resoluciones (Resolución 053 y Resolución Ejecutiva 389 de 2026), definición de vigencia de la ZUT y aplicación del marco penal y constitucional.`,
+        capacidades: `Facultad legal exclusiva para habilitar espacios de transición, coordinar ministerios, ordenar despliegue de Fuerza Pública y exigir cumplimiento de la ley.`,
+        alcance: `Determina las reglas formales del proceso de diálogo y los parámetros de seguridad y legalidad en todo el territorio nacional.`,
+        limitaciones: `Dificultades de articulación interinstitucional sostenida y vacíos de presencia estatal integral en zonas rurales dispersas.`
+      },
+      arn: {
+        badge: `Operatividad técnica e institucional`,
+        actor: `Agencia para la Reincorporación y la Normalización (ARN)`,
+        mecanismo: `Implementación técnica de rutas de atención, registro, acompañamiento psicosocial y gestión de proyectos para personas en tránsito hacia la vida civil.`,
+        capacidades: `Competencia institucional especializada, metodología de reincorporación y capacidad para sostener la atención tras el cierre de la ZUT (septiembre 2026).`,
+        alcance: `Asegura la continuidad administrativa y técnica del proceso individual para los 99 participantes que iniciaron su ruta.`,
+        limitaciones: `No tiene competencias militares ni judiciales; su operación en terreno depende de condiciones de seguridad y coordinación presupuestal con otras entidades.`
+      },
+      economias: {
+        badge: `Poder remunerativo territorial`,
+        actor: `Economías territoriales (legales e ilegales)`,
+        mecanismo: `Generación o restricción de ingresos familiares mediante actividades agrícolas lícitas precarias frente a la atracción de rentas asociadas a economías de uso ilícito.`,
+        capacidades: `Capacidad de moldear decisiones de subsistencia cotidiana en zonas con escaso empleo formal y baja infraestructura productiva.`,
+        alcance: `Incide en las disputas por el control del territorio, en la vulnerabilidad socioeconómica y en el riesgo de reincidencia o vinculación armada.`,
+        limitaciones: `Las economías lícitas carecen aún de suficiente encadenamiento comercial, mientras las ilícitas reproducen inseguridad y exclusión.`
+      },
+      comunidades: {
+        badge: `Legitimidad moral y resistencia civil`,
+        actor: `Comunidades campesinas, indígenas y afrodescendientes`,
+        mecanismo: `Organización social, liderazgo territorial, emisión de demandas humanitarias, veeduría y defensa colectiva de sus derechos y autonomía.`,
+        capacidades: `Legitimidad moral, arraigo amazónico-fronterizo, participación en escenarios PDET y articulación con alertas de la Defensoría del Pueblo.`,
+        alcance: `Visibiliza afectaciones acumuladas y exige que cualquier acuerdo de paz incorpore garantías reales para la población civil.`,
+        limitaciones: `Exposición directa a amenazas, desplazamientos y restricciones de movilidad cuando disminuyen las garantías institucionales de seguridad.`
+      }
+    };
+
+    const TIMELINE_EVENTS = [
+      {
+        date: `20 de junio de 2018`,
+        tag: `Antecedente estructural`,
+        title: `Alerta Temprana Estructural 054-18 (Defensoría del Pueblo)`,
+        summary: `El Sistema de Alertas Tempranas advierte riesgos estructurales persistentes sobre comunidades campesinas, indígenas y afrodescendientes en Valle del Guamuez por presencia armada, economías ilícitas y disputas territoriales.`,
+        source: `Defensoría del Pueblo · SAT (2018)`
+      },
+      {
+        date: `05 – 19 de diciembre de 2025`,
+        tag: `Acuerdo político`,
+        title: `Acuerdo y Declaración conjunta Gobierno Nacional – CNEB`,
+        summary: `Se consigna el acuerdo para la creación de la Zona de Ubicación Temporal (ZUT) entre el Gobierno nacional y la Coordinadora Nacional Ejército Bolivariano, abriendo la ruta de diálogo territorial.`,
+        source: `Declaración conjunta del 19 de diciembre de 2025`
+      },
+      {
+        date: `25 de febrero de 2026`,
+        tag: `Acto normativo`,
+        title: `Creación formal de la ZUT mediante Resolución 053 de 2026`,
+        summary: `Se formaliza jurídicamente el marco de la Zona de Ubicación Temporal en Valle del Guamuez (complementado en el paquete normativo con la Resolución Ejecutiva 389 de 2026).`,
+        source: `Resolución 053 de 2026 · Marco normativo`
+      },
+      {
+        date: `26 de abril de 2026`,
+        tag: `Hoja de ruta`,
+        title: `Aprobación de hoja de ruta, etapas y funcionamiento de la ZUT`,
+        summary: `Las partes definen las fases operativas del diálogo y los criterios de funcionamiento de la Zona de Ubicación Temporal orientados al tránsito hacia la vida civil.`,
+        source: `Documento de seguimiento del proceso de diálogo`
+      },
+      {
+        date: `18 de junio de 2026`,
+        tag: `Hito territorial`,
+        title: `Ingreso de 99 integrantes de Comandos de la Frontera a la ZUT`,
+        summary: `Noventa y nueve integrantes de los Comandos de la Frontera (CNEB) ingresan a la Zona de Ubicación Temporal en Valle del Guamuez en un escenario ligado a garantías de seguridad, derechos humanos y transformación económica.`,
+        source: `Registro del caso ZUT Valle del Guamuez`
+      },
+      {
+        date: `24 de julio de 2026`,
+        tag: `Mesa de diálogo`,
+        title: `Acuerdos del octavo ciclo de diálogos`,
+        summary: `Se suscriben nuevos acuerdos y avances programáticos durante el octavo ciclo de conversaciones entre el Gobierno nacional y la CNEB.`,
+        source: `Acuerdos del octavo ciclo de diálogos (24 jul 2026)`
+      },
+      {
+        date: `Septiembre de 2026`,
+        tag: `Transición institucional`,
+        title: `Cierre formal de la ZUT y continuidad de atención por la ARN`,
+        summary: `Ante dificultades jurídicas e institucionales se produce el cierre de la ZUT; la Agencia para la Reincorporación y la Normalización (ARN) informa que la medida no suspende la atención a quienes iniciaron su tránsito a la vida civil.`,
+        source: `Comunicación institucional ARN (sep 2026)`
+      }
+    ];
+
+    const ABC_DATA = {
+      A: {
+        badge: `Vértice A · Actitudes (Dimensión subjetiva)`,
+        title: `Temores comunitarios, zozobra vital y cautela institucional`,
+        points: [
+          `Desconfianza histórica de las comunidades campesinas, indígenas y afrodescendientes frente a la efectividad y permanencia de las garantías de seguridad.`,
+          `Zozobra e incertidumbre jurídica y vital entre los 99 excombatientes de Comandos de la Frontera respecto a su seguridad y futuro tras el cierre de la ZUT.`,
+          `Cautela y tensión en las entidades estatales frente a los límites jurídicos y operativos para sostener compromisos en frontera.`
+        ],
+        note: `Según Galtung, estas actitudes provienen tanto de experiencias acumuladas de violencia como de la falta de certezas institucionales.`
+      },
+      B: {
+        badge: `Vértice B · Comportamientos (Dimensión observable)`,
+        title: `Acciones, actos normativos y exigibilidad territorial`,
+        points: [
+          `Ingreso de 99 integrantes de Comandos de la Frontera a la ZUT (junio 2026) para iniciar su tránsito hacia la vida civil.`,
+          `Expedición de la Resolución 053 de 2026, desarrollo de ciclos de diálogo (octavo ciclo, julio 2026) y continuidad de atención técnica de la ARN (septiembre 2026).`,
+          `Exigibilidad permanente de derechos, alertas humanitarias y demandas de protección por parte de las comunidades del territorio.`
+        ],
+        note: `Constituyen los hechos visibles y documentables que expresan la dinámica actual del conflicto y la transición.`
+      },
+      C: {
+        badge: `Vértice C · Contradicciones (Núcleo estructural)`,
+        title: `Dilemas de seguridad, continuidad institucional y economía territorial`,
+        points: [
+          `Dilema entre garantizar plenamente la seguridad y protección de las comunidades frente a las exigencias de seguridad y definición jurídica para la desmovilización.`,
+          `Tensión entre el cierre formal de la Zona de Ubicación Temporal (septiembre 2026) y la urgencia de mantener un acompañamiento institucional continuo sin vacíos.`,
+          `Contradicción entre la persistencia de economías de uso ilícito rentables en zonas rurales y la precariedad de alternativas económicas legales sostenibles.`
+        ],
+        note: `Resolver el conflicto exige transformar estas contradicciones de fondo y no únicamente administrar los comportamientos visibles.`
+      }
+    };
+
+    /* 1. Filter & Select Actors */
+    function filterActors(cat, btn) {
+      const buttons = document.querySelectorAll('[data-actor-filter]');
+      buttons.forEach(function (b) { b.classList.remove('is-selected'); });
+      if (btn) btn.classList.add('is-selected');
+
+      const cards = document.querySelectorAll('[data-actor-card]');
+      cards.forEach(function (card) {
+        const cardCat = card.getAttribute('data-cat');
+        card.classList.remove('is-highlighted');
+        if (cat === 'all' || cardCat === cat) {
+          card.classList.remove('is-dimmed');
+        } else {
+          card.classList.add('is-dimmed');
+        }
+      });
+
+      const nodes = document.querySelectorAll('[data-actor-node]');
+      nodes.forEach(function (node) {
+        const nodeCat = node.getAttribute('data-cat');
+        if (cat === 'all' || nodeCat === cat) {
+          node.classList.remove('is-dimmed');
+        } else {
+          node.classList.add('is-dimmed');
+        }
+      });
+    }
+
+    function selectActorNode(actorId) {
+      const cards = document.querySelectorAll('[data-actor-card]');
+      cards.forEach(function (card) {
+        card.classList.remove('is-dimmed');
+        if (card.getAttribute('data-actor-card') === actorId) {
+          card.classList.add('is-highlighted');
+        } else {
+          card.classList.remove('is-highlighted');
+        }
+      });
+
+      const nodes = document.querySelectorAll('[data-actor-node]');
+      nodes.forEach(function (node) {
+        if (node.getAttribute('data-actor-node') === actorId) {
+          node.classList.remove('is-dimmed');
+        } else {
+          node.classList.add('is-dimmed');
+        }
+      });
+    }
+
+    /* 2. Filter PIN Matrix */
+    function filterPin(actor, btn) {
+      const parent = btn ? btn.parentElement : null;
+      if (parent) {
+        parent.querySelectorAll('.btn-pill').forEach(function (b) { b.classList.remove('is-selected'); });
+      }
+      if (btn) btn.classList.add('is-selected');
+
+      const cards = document.querySelectorAll('[data-pin-actor]');
+      cards.forEach(function (card) {
+        if (actor === 'all' || card.getAttribute('data-pin-actor') === actor) {
+          card.style.display = 'grid';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    /* 4. Power Manifestation Inspector */
+    function selectPowerManifest(key, btn) {
+      const data = POWER_MANIFESTATIONS[key];
+      const container = document.getElementById('power-manifest-detail');
+      if (!data || !container) return;
+
+      document.querySelectorAll('.selector-btn').forEach(function (b) {
+        b.classList.remove('is-active');
+      });
+      if (btn) btn.classList.add('is-active');
+
+      container.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--space-sm); border-bottom: 1px solid var(--outline-variant); padding-bottom: var(--space-sm);">
+          <div>
+            <span class="tag tag--secondary">${data.badge}</span>
+            <h3 style="font-family: var(--font-headline); font-size: 1.375rem; margin: var(--space-xs) 0 0 0;">${data.actor}</h3>
+          </div>
+        </div>
+        <div class="detail-dossier-grid">
+          <div class="sub-panel">
+            <h4>Mecanismo de ejercicio</h4>
+            <p>${data.mecanismo}</p>
+          </div>
+          <div class="sub-panel">
+            <h4>Recursos y capacidades</h4>
+            <p>${data.capacidades}</p>
+          </div>
+          <div class="sub-panel">
+            <h4>Alcance territorial</h4>
+            <p>${data.alcance}</p>
+          </div>
+          <div class="sub-panel">
+            <h4>Limitaciones estructurales</h4>
+            <p>${data.limitaciones}</p>
+          </div>
+        </div>
+      `;
+    }
+
+    /* 5. Network Relations Filter */
+    function filterRelations(type, btn) {
+      const parent = btn ? btn.parentElement : null;
+      if (parent) {
+        parent.querySelectorAll('.btn-pill').forEach(function (b) { b.classList.remove('is-selected'); });
+      }
+      if (btn) btn.classList.add('is-selected');
+
+      const edges = document.querySelectorAll('[data-rel-type]');
+      edges.forEach(function (edge) {
+        if (type === 'all' || edge.getAttribute('data-rel-type') === type) {
+          edge.style.opacity = '1';
+        } else {
+          edge.style.opacity = '0.12';
+        }
+      });
+
+      const items = document.querySelectorAll('[data-rel-cat]');
+      items.forEach(function (item) {
+        if (type === 'all' || item.getAttribute('data-rel-cat') === type) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    /* 6. Timeline */
+    function selectTimeline(index, btn) {
+      const ev = TIMELINE_EVENTS[index];
+      const detail = document.getElementById('timeline-detail');
+      if (!ev || !detail) return;
+
+      document.querySelectorAll('.timeline-node').forEach(function (n) {
+        n.classList.remove('is-active');
+      });
+      if (btn) btn.classList.add('is-active');
+
+      detail.innerHTML = `
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-sm);">
+          <span class="tag tag--primary">${ev.date}</span>
+          <span class="tag tag--neutral">${ev.tag}</span>
+        </div>
+        <h3 style="font-family: var(--font-headline); font-size: 1.25rem; margin: 0;">${ev.title}</h3>
+        <p style="margin: 0; font-size: 0.96875rem; line-height: 1.55;">${ev.summary}</p>
+        <span class="dossier-meta">Respaldo documental: ${ev.source}</span>
+      `;
+    }
+
+    /* Posters 7 & 8: Problem Tree Interactive Highlight */
+    function highlightTree(branch, btn) {
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('.btn-pill').forEach(function (b) { b.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+      }
+
+      const roots = document.querySelectorAll('[data-tree-root]');
+      roots.forEach(function (root) {
+        if (branch === 'all' || root.getAttribute('data-tree-root') === branch) {
+          root.classList.remove('is-dimmed');
+        } else {
+          root.classList.add('is-dimmed');
+        }
+      });
+
+      const leaves = document.querySelectorAll('[data-tree-effect]');
+      leaves.forEach(function (leaf) {
+        const linked = leaf.getAttribute('data-tree-effect') || '';
+        if (branch === 'all') {
+          leaf.classList.remove('is-dimmed', 'is-focused');
+        } else if (linked.indexOf(branch) !== -1) {
+          leaf.classList.remove('is-dimmed');
+          leaf.classList.add('is-focused');
+        } else {
+          leaf.classList.remove('is-focused');
+          leaf.classList.add('is-dimmed');
+        }
+      });
+    }
+
+    /* 9. ABC Triangle */
+    function selectAbc(vertex) {
+      const data = ABC_DATA[vertex];
+      const panel = document.getElementById('abc-detail-panel');
+      if (!data || !panel) return;
+
+      document.querySelectorAll('[data-abc-card]').forEach(function (card) {
+        if (card.getAttribute('data-abc-card') === vertex) {
+          card.classList.add('is-active');
+        } else {
+          card.classList.remove('is-active');
+        }
+      });
+
+      ['A', 'B', 'C'].forEach(function (v) {
+        const circle = document.getElementById('abc-circle-' + v);
+        if (circle) {
+          circle.setAttribute('stroke-width', v === vertex ? '5' : '3');
+          circle.setAttribute('opacity', v === vertex ? '1' : '0.72');
+        }
+      });
+
+      const itemsHtml = data.points.map(function (pt) {
+        return `<li>${pt}</li>`;
+      }).join('');
+
+      panel.innerHTML = `
+        <div>
+          <span class="tag tag--secondary">${data.badge}</span>
+          <h3 style="font-family: var(--font-headline); font-size: 1.3125rem; margin: var(--space-xs) 0 0 0;">${data.title}</h3>
+        </div>
+        <ul style="margin: 0; padding-left: var(--space-md); display: grid; gap: var(--space-xs); font-size: 0.9375rem; line-height: 1.5;">
+          ${itemsHtml}
+        </ul>
+        <p style="margin: 0; font-size: 0.875rem; color: var(--on-surface-variant); border-top: 1px solid var(--outline-variant); padding-top: var(--space-sm);"><strong>Lectura analítica:</strong> ${data.note}</p>
+      `;
+    }
+
+    /* Strategy Matrix Filter */
+    function filterStrategy(line, btn) {
+      if (btn && btn.parentElement) {
+        btn.parentElement.querySelectorAll('.btn-pill').forEach(function (b) { b.classList.remove('is-selected'); });
+        btn.classList.add('is-selected');
+      }
+
+      const rows = document.querySelectorAll('[data-strategy-line]');
+      rows.forEach(function (row) {
+        if (line === 'all' || row.getAttribute('data-strategy-line') === line) {
+          row.classList.remove('is-hidden');
+        } else {
+          row.classList.add('is-hidden');
+        }
+      });
+    }
+
+
+    function setShareStatus(message) {
+      const status = document.getElementById('share-status');
+      if (status) status.textContent = message;
+    }
+
+    function createShareableFile() {
+      const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      return new File([html], 'analisis-valle-del-guamuez.html', { type: 'text/html;charset=utf-8' });
+    }
+
+    function downloadDocument() {
+      const file = createShareableFile();
+      const url = URL.createObjectURL(file);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = file.name;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      setShareStatus('HTML descargado. Puedes adjuntarlo en un correo o mensajería.');
+    }
+
+    async function shareDocument() {
+      const file = createShareableFile();
+      try {
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ title: document.title, text: 'Documento interactivo: análisis del conflicto en Valle del Guamuez', files: [file] });
+          setShareStatus('Documento compartido.');
+          return;
+        }
+        if (navigator.share && /^https?:$/.test(location.protocol)) {
+          await navigator.share({ title: document.title, text: 'Documento interactivo: análisis del conflicto en Valle del Guamuez', url: location.href });
+          setShareStatus('Enlace compartido.');
+          return;
+        }
+      } catch (error) {
+        if (error && error.name === 'AbortError') return;
+      }
+      downloadDocument();
+    }
+    /* Initialize Defaults & Active Nav Observer */
+    document.addEventListener('DOMContentLoaded', function () {
+      const firstPowerBtn = document.querySelector('.selector-btn');
+      selectPowerManifest('comandos', firstPowerBtn);
+
+      const defaultTimelineBtn = document.querySelectorAll('.timeline-node')[4];
+      selectTimeline(4, defaultTimelineBtn);
+
+      selectAbc('A');
+
+      if ('IntersectionObserver' in window) {
+        const navChips = document.querySelectorAll('.nav-chip');
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              navChips.forEach(function (chip) {
+                if (chip.getAttribute('href') === '#' + id) {
+                  chip.classList.add('is-active');
+                } else {
+                  chip.classList.remove('is-active');
+                }
+              });
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '-10% 0px -65% 0px' });
+
+        document.querySelectorAll('section[id]').forEach(function (sec) {
+          observer.observe(sec);
+        });
+      }
+    });
+  </script>
+
+
+</body></html>
